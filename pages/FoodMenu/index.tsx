@@ -55,6 +55,7 @@ import {
   ReviewItemLikeComment,
 } from "../../styles/FoodMenuStyle";
 
+// 圖片path
 const picPath = [
   "/images/foodMenu/1.png",
   "/images/foodMenu/2.png",
@@ -62,16 +63,20 @@ const picPath = [
   "/images/foodMenu/4.png",
   "/images/foodMenu/5.png",
 ];
+// 星星數量
 const starNumber: Array<number> = [];
 for (let i = 1; i <= 5; i++) {
   starNumber.push(i);
 }
+// 評論數量
 const RecommendItemNumber: Array<number> = [];
 for (let i = 1; i <= 4; i++) {
   RecommendItemNumber.push(i);
 }
+// 渲染資料
 const listButtonData = ["Order Online", "Book a Table", "Reviews"];
 const inputContent = ["Fist Name", "Last Name", "Email", "Phone"];
+// select 第一個為空 不顯示
 const selectOptionContent = ["", "Foo", " Bar", "Fizz", "Buzz"];
 const reviews = [
   {
@@ -125,7 +130,6 @@ const reviews = [
     comment: "Comment",
   },
 ];
-
 const menuData = [
   "DPB Special Combos (10)",
   "Chineese Starters (30)",
@@ -139,26 +143,35 @@ const menuData = [
 ];
 
 function FoodMenu() {
+  // Fixed Nav 開關狀態
   const [isShow, setIsShow] = useState(true);
+  // input和select 狀態
   const [activeInput, setActiveInput] = useState(1000);
+  // list區域 顯示狀態
   const [listChange, setListChange] = useState(0);
-
+  // FoodMenuModal 開關狀態
   const [modalFoodMenuIsOpen, setModalFoodMenuIsOpen] = useState(false);
 
+  // 開啟
   function openModalFoodMunu() {
     setModalFoodMenuIsOpen(true);
   }
+  // 關閉
   function closeModalFoodMunu() {
     setModalFoodMenuIsOpen(false);
   }
 
   return (
     <div>
-      <Nav isShow={isShow} />
+      {/* Fixed Nav */}
+      <Nav isShow={isShow} firstHeight={true} />
+      {/* 返回頂部 */}
       <Up />
+      {/* 麵包屑 */}
       <Container>
         <Breadcrumb nowPage="FoodMenu" />
       </Container>
+
       <Starbucks>
         <Container>
           <PicGroup>
@@ -170,8 +183,10 @@ function FoodMenu() {
               );
             })}
           </PicGroup>
+          {/* 標題區 */}
           <TitleArea>
             <Title>Starbucks</Title>
+            {/* 渲染星星 */}
             <Star>
               {starNumber.map((v, i) => {
                 return <AiFillStar key={i} />;
@@ -181,6 +196,7 @@ function FoodMenu() {
               </p>
             </Star>
           </TitleArea>
+          {/* 基本訊息 */}
           <Info>
             <p>Coffee, signature roasts, light bite, quick bite, fast foods</p>
             <p>
@@ -194,9 +210,7 @@ function FoodMenu() {
             </p>
             <p>
               <BiTimeFive />
-              <Link href="javascipt:void(0)">
-                <a className="open-time">Open Now</a>
-              </Link>
+              <span className="open-time">Open Now</span>
               <span>- Sun - Mon: 9am - 10pm</span>
             </p>
             <p>
@@ -204,10 +218,13 @@ function FoodMenu() {
               <span>www.starbucks.com</span>
             </p>
           </Info>
+          {/* 主要區域 */}
           <Main>
             <ListButtons>
               {listButtonData.map((v, i) => {
                 return (
+                  // list按鈕 切換list區域
+                  // 根據listChange是否等於i判斷 true開起 false關閉
                   <ButtonsLi
                     key={i}
                     onClick={() => {
@@ -220,7 +237,9 @@ function FoodMenu() {
                 );
               })}
             </ListButtons>
+            {/* list內容區域 */}
             <ListContent listChange={listChange}>
+              {/* 第一區 */}
               <Recommend listChange={listChange}>
                 {/* 手機Modal按鈕 */}
                 <CategoriesButton onClick={openModalFoodMunu}>
@@ -244,35 +263,39 @@ function FoodMenu() {
                     {RecommendItemNumber.map((v) => {
                       return (
                         <RecommendItem key={v}>
-                          <div className="pic">
-                            <Image
-                              src="/images/foodMenu/6.png"
-                              height="150px"
-                              width="150px"
-                              alt=""
-                            />
-                          </div>
-                          <div className="text-content">
-                            <div className="title">Tandoori Chicken (Full)</div>
-                            <Link href="javascipt:void(0)">
-                              <a>MUST TRY</a>
-                            </Link>
-                            <RecommendStar>
-                              {starNumber.map((v, i) => {
-                                return <AiFillStar key={i} />;
-                              })}
-                              <p>
-                                <span>(57)</span>
+                          <div className="left">
+                            <div className="pic">
+                              <Image
+                                src="/images/foodMenu/6.png"
+                                height="150px"
+                                width="150px"
+                                alt=""
+                              />
+                            </div>
+                            <div className="text-content">
+                              <div className="title">
+                                Tandoori Chicken (Full)
+                              </div>
+                              <Link href="javascipt:void(0)">
+                                <a>MUST TRY</a>
+                              </Link>
+                              <RecommendStar>
+                                {starNumber.map((v, i) => {
+                                  return <AiFillStar key={i} />;
+                                })}
+                                <p>
+                                  <span>(57)</span>
+                                </p>
+                              </RecommendStar>
+                              <p className="price">
+                                <span>$25</span>
+                                <span>$22.5</span>
+                                <span>10% off</span>
                               </p>
-                            </RecommendStar>
-                            <p className="price">
-                              <span>$25</span>
-                              <span>$22.5</span>
-                              <span>10% off</span>
-                            </p>
-                            <p className="meal-content">
-                              (4 Pcs mutton in chicken keema gravy)
-                            </p>
+                              <p className="meal-content">
+                                (4 Pcs mutton in chicken keema gravy)
+                              </p>
+                            </div>
                           </div>
                           <AddButton>
                             <span>ADD</span> <BsPlusLg />
@@ -283,8 +306,10 @@ function FoodMenu() {
                   </RecommendItemGroup>
                 </RecommendMain>
               </Recommend>
+              {/* 第二區 */}
               <Book listChange={listChange}>
                 <div className="input-area">
+                  {/* 根據activeInput狀態 改變css */}
                   <SelectDate activeInput={activeInput === 4 ? true : false}>
                     <BookSelectLabel
                       activeInput={activeInput === 4 ? true : false}
@@ -294,9 +319,11 @@ function FoodMenu() {
                     <BookSelect
                       name="date"
                       id="date"
+                      // 聚焦就ser
                       onFocus={() => {
                         setActiveInput(4);
                       }}
+                      // 失焦就切換狀態
                       onBlur={() => {
                         setActiveInput(1000);
                       }}
@@ -360,6 +387,7 @@ function FoodMenu() {
                   })}
                   <BookButton>Book</BookButton>
                 </div>
+                {/* 手機app */}
                 <Image
                   src="/images/foodMenu/dowmload-pic.png"
                   alt=""
@@ -367,11 +395,13 @@ function FoodMenu() {
                   width="495px"
                 />
               </Book>
+              {/* 第三區 */}
               <Review listChange={listChange}>
                 <ReviewItemGroup>
                   {reviews.map((v, i) => {
                     return (
                       <ReviewItem key={i}>
+                        {/* index 1 內容不同 分開 */}
                         {i === 1 ? (
                           <div>
                             <ReviewItemInfo>
@@ -428,6 +458,7 @@ function FoodMenu() {
                               <span>{v.time}</span>
                             </ReviewItemStar>
                             <ReviewItemContent>{v.content}</ReviewItemContent>
+                            {/* index 0 以外的沒有食物照片 隱藏pic */}
                             {i !== 0 ? (
                               ""
                             ) : (
@@ -464,6 +495,7 @@ function FoodMenu() {
                     );
                   })}
                 </ReviewItemGroup>
+                {/* 手機app */}
                 <Image
                   src="/images/foodMenu/dowmload-pic.png"
                   alt=""

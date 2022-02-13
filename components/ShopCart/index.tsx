@@ -17,6 +17,7 @@ import {
   ViewButton,
 } from "./ShopCartStyle";
 
+// 渲染資料
 const ItemData = [
   "/images/shopCart/1.png",
   "/images/shopCart/2.png",
@@ -30,27 +31,34 @@ interface Props {
 
 function ShopCart(props: Props) {
   return (
+    // 狀態判斷開啟或關閉
     <ShopCartWrap cartIsOpen={props.cartIsOpen}>
       <Top>
+        {/* 總數量 */}
         <div className="total">
           <RiShoppingBagLine />
           <span>1 Item</span>
         </div>
+        {/* 關閉 */}
         <ImCross
           onClick={() => {
             props.setCartIsOpen(false);
           }}
         />
       </Top>
+      {/* item區域 */}
       <ItemGroup>
         {ItemData.map((v, i) => {
           return (
             <Item key={i}>
               <Number>
+                {/* + */}
                 <button>
                   <BsPlusLg />
                 </button>
+                {/* 數字 */}
                 <span>1</span>
+                {/* - */}
                 <button>
                   <AiOutlineMinus />
                 </button>
@@ -59,6 +67,7 @@ function ShopCart(props: Props) {
                 <Pic>
                   <Image src={v} alt="" height="64" width="64" />
                 </Pic>
+                {/* 文字內容區域 */}
                 <div className="text">
                   <h3 className="title">
                     Mughal Masala Order Food Online With 50% Off
@@ -73,6 +82,7 @@ function ShopCart(props: Props) {
         })}
       </ItemGroup>
       <Accounts>
+        {/* 總價 */}
         <AccountsButton>Checkout Now ($ 220)</AccountsButton>
         <ViewButton>VIEW CART</ViewButton>
       </Accounts>

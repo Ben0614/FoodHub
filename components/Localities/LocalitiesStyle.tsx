@@ -16,6 +16,7 @@ export const LocalitiesTitle = styled.h2`
 export const LocalitiesItemGroup = styled.div`
   margin-bottom: ${(props) => props.theme.mg(12)};
 `;
+// 桌機grid排列
 export const ComputerGrid = styled.div`
   ${(props) => props.theme.screens.lg} {
     display: grid;

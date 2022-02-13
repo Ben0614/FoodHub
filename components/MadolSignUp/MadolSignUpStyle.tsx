@@ -23,6 +23,7 @@ export const Login = styled.div`
       height: 1px;
       background-color: #aaa;
     }
+    /* 偽元素製作左右橫線 */
     &:before {
       content: "";
       position: absolute;
@@ -37,6 +38,7 @@ export const Login = styled.div`
 `;
 export const Name = styled.div`
   text-align: left;
+  /* inline-block 才可以用mb */
   label {
     display: inline-block;
     margin-bottom: ${(props) => props.theme.mg(1)};
@@ -101,10 +103,14 @@ export const GoogleButton = styled(LoginButton)`
 `;
 
 export const HaveAccount = styled.p`
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 100%;
   background: #f6f9fc;
   margin: 0 ${(props) => props.theme.mg(-3)};
   padding: ${(props) => props.theme.pd(3)} 0;
-  color: #aaa;
+  color: #999;
   a {
     text-decoration: underline;
     margin-left: ${(props) => props.theme.mg(3)};

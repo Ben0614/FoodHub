@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
-export const PopularWrap = styled.div`
+export const PopularRestaurantWrap = styled.div`
   background-color: #f6f9fc;
   padding: ${(props) => props.theme.pd(12)} 0;
 `;
-export const PopularTitle = styled.h2`
+export const PopularRestaurantTitle = styled.h2`
   font-size: ${(props) => props.theme.fz(5) + "px"};
   line-height: ${(props) => props.theme.lh(props.theme.fz(5)) + "px"};
   margin-bottom: ${(props) => props.theme.mg(2)};
 `;
-export const PopularItemGroup = styled.div`
+// 桌機 grid
+export const PopularRestaurantItemGroup = styled.div`
   ${(props) => props.theme.screens.lg} {
     display: grid;
     gap: 20px;
@@ -19,15 +20,17 @@ export const PopularItemGroup = styled.div`
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 `;
-export const PopularItem = styled.div`
+export const PopularRestaurantItem = styled.div`
   position: relative;
   border-radius: 10px;
   border: 1px solid #ccc;
+  /* border-radius */
   overflow: hidden;
   margin-bottom: ${(props) => props.theme.mg(5)};
   ${(props) => props.theme.screens.lg} {
     margin-bottom: 0;
   }
+  /* 文字區域 */
   .top,
   .bottom {
     display: flex;
@@ -56,7 +59,7 @@ export const PopularItem = styled.div`
     }
     .time {
       margin-left: ${(props) => props.theme.mg(2)};
-      color: #aaa;
+      color: #999;
     }
   }
   .title {

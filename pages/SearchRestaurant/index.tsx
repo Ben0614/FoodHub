@@ -24,6 +24,7 @@ import {
   ItemCost,
 } from "../../styles/SearchRestaurantStyle";
 
+// 渲染資料
 const listButtonData = ["Delivery", "Dining Out", "Nightlife"];
 const conditionData = [
   { title: "Categories", content: ["Pizza", "Pizza", "Pizza", "Pizza"] },
@@ -35,24 +36,31 @@ const conditionData = [
 ];
 
 function SearchRestaurant() {
+  // Fixed Nav 開關狀態
   const [isShow, setIsShow] = useState(true);
-  const [listChange, setListChange] = useState(0);
-
+  // listButton 切換狀態
+  const [buttonChange, setButtonChange] = useState(0);
+  // SearchModal 開關狀態
   const [modalSearchIsOpen, setModalSearchIsOpen] = useState(false);
-
+  // 開啟
   function openModalSearch() {
     setModalSearchIsOpen(true);
   }
+  // 關閉
   function closeModalSearch() {
     setModalSearchIsOpen(false);
   }
   return (
     <div>
-      <Nav isShow={isShow} />
+      {/* Fixed Nav */}
+      <Nav isShow={isShow} firstHeight={true} />
+      {/* 返回頂部 */}
       <Up />
+      {/* 麵包屑 */}
       <Container>
-        <Breadcrumb nowPage="Restaurant"/>
+        <Breadcrumb nowPage="Restaurant" />
       </Container>
+
       <Container>
         <Buttons>
           <ListButtons>
@@ -61,9 +69,10 @@ function SearchRestaurant() {
                 <ButtonsLi
                   key={i}
                   onClick={() => {
-                    setListChange(i);
+                    setButtonChange(i);
                   }}
-                  isOpen={listChange === i ? true : false}
+                  // 按鈕狀態
+                  buttonChange={buttonChange === i ? true : false}
                 >
                   {v}
                 </ButtonsLi>
@@ -95,6 +104,7 @@ function SearchRestaurant() {
                       {v.content.map((v, ind) => {
                         return (
                           <div key={ind}>
+                            {/* index 2 是單選 分開 */}
                             {i === 2 ? (
                               <input type="radio" name="sort" />
                             ) : (
@@ -110,9 +120,11 @@ function SearchRestaurant() {
                 <ItemCost>
                   <h3 className="title">Cost per person</h3>
                   <div className="costs">
+                    {/* 圓形20 */}
                     <div className="cost cost20">
                       <span>20</span>
                     </div>
+                    {/* 圓形40 */}
                     <div className="cost cost40">
                       <span>40</span>
                     </div>

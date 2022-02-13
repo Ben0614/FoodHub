@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Cross = styled.div`
   text-align: right;
   margin-bottom: ${(props) => props.theme.mg(4)};
+  cursor: pointer;
 `;
 export const ItemGroup = styled.ul`
   text-align: left;
@@ -18,7 +19,7 @@ export const Item = styled.li`
     > input {
     }
     > span {
-      color: #aaa;
+      color: #999;
       margin-left: ${(props) => props.theme.mg(1)};
     }
   }
@@ -28,7 +29,6 @@ export const ItemCost = styled(Item)`
     display: flex;
     margin-bottom: ${(props) => props.theme.mg(3)};
     .cost {
-      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,12 +36,17 @@ export const ItemCost = styled(Item)`
       width: 32px;
       height: 32px;
       color: #fff;
+      /* 切出形狀 */
       border-radius: 50% 50% 0;
+      /* 轉正 */
       transform: rotate(45deg);
       margin-left: ${(props) => props.theme.mg(4)};
 
       span {
+        position: relative;
+        /* 字會受到父層的影響 把字轉正 */
         transform: rotate(-45deg);
+        /* 點 */
         &::after {
           content: "";
           position: absolute;

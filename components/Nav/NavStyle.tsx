@@ -2,10 +2,12 @@ import styled from "styled-components";
 
 interface Props {
   isShow?: boolean;
+  firstHeight?: boolean;
 }
 
 export const NavHeight = styled.div<Props>`
-  height: 70px;
+  // true就給高度 false就給0
+  height: ${(props) => (props.firstHeight ? "70px" : "0")};
 `;
 
 export const NavWrap = styled.div<Props>`

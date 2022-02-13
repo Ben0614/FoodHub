@@ -14,6 +14,7 @@ export const Login = styled.div`
   }
   .on {
     position: relative;
+    /* 偽元素製作左右兩條橫線 */
     &:after {
       content: "";
       position: absolute;
@@ -37,6 +38,7 @@ export const Login = styled.div`
 `;
 export const LoginMail = styled.div`
   text-align: left;
+  /* inline-block 才能用mb */
   label {
     display: inline-block;
     margin-bottom: ${(props) => props.theme.mg(1)};
@@ -92,7 +94,7 @@ export const ResetPassword = styled.p`
   background: #f6f9fc;
   margin: 0 ${(props) => props.theme.mg(-3)};
   padding: ${(props) => props.theme.pd(3)} 0;
-  color: #aaa;
+  color: #999;
   a {
     text-decoration: underline;
     margin-left: ${(props) => props.theme.mg(3)};

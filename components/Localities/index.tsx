@@ -9,6 +9,7 @@ import {
   LocalitiesItem,
 } from "./LocalitiesStyle";
 
+// 渲染資料
 const LocalitiesData = [
   { title: "Newport", number: "(26 places)" },
   { title: "Brooklyn", number: "(14 places)" },
@@ -16,6 +17,7 @@ const LocalitiesData = [
   { title: "Chelsea ", number: "(20 places)" },
   { title: "Coney Island  ", number: "(6 places)" },
 ];
+// item數量
 const LocalitiesItemGroupNumber: Array<number> = [];
 for (let i = 1; i <= 4; i++) {
   LocalitiesItemGroupNumber.push(i);
@@ -27,6 +29,7 @@ function Localities() {
         <LocalitiesTitle>
           Popular Localities In & Around New York
         </LocalitiesTitle>
+        {/* 桌機時起作用 */}
         <ComputerGrid>
           {LocalitiesItemGroupNumber.map((v) => {
             return (

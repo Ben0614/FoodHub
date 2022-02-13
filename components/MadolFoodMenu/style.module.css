@@ -1,3 +1,4 @@
+/* 動畫 從左側滑入 */
 @keyframes positionLeft {
   from {
     left: -100%;
@@ -6,6 +7,7 @@
     left: 30%;
   }
 }
+/* 內層樣式 */
 .Modal {
   background-color: #fff;
   position: absolute;

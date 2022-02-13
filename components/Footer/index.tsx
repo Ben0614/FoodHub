@@ -19,6 +19,7 @@ import {
   ComputerFlex,
 } from "./FooterStyle";
 
+// 渲染資料
 const FooterData = [
   {
     title: "About Us",
@@ -51,6 +52,7 @@ const FooterData = [
   },
 ];
 
+// sns icon
 const sns = [
   <MdFacebook key={0} />,
   <AiOutlineTwitter key={1} />,
@@ -63,7 +65,9 @@ function Footer() {
   return (
     <FooterWrap>
       <Container>
+        {/* 桌機 flex */}
         <ComputerFlex>
+          {/* 基本介紹 */}
           <div className="introduction">
             <Image src="/images/logo.png" alt="" height="45px" width="45px" />
             <p>
@@ -71,6 +75,7 @@ function Footer() {
               libero id et, in gravida. Sit diam duis mauris nulla cursus. Erat
               et lectus vel ut sollicitudin elit at amet.
             </p>
+            {/* 下載點 */}
             <Download>
               <p>Download App from</p>
               <div className="load-point">
@@ -93,18 +98,26 @@ function Footer() {
               </div>
             </Download>
           </div>
+          {/* item區域 */}
           <ItemGroup>
             {FooterData.map((v, i) => {
               return (
                 <Item key={i}>
                   <ItemTitle>{v.title}</ItemTitle>
-                  {FooterData[i].link.map((v, i) => {
+                  {FooterData[i].link.map((v, ind) => {
                     return (
-                      <Link href="/" key={i}>
-                        <a>
+                      // 最後一組不是link 要分開
+                      <div key={ind}>
+                        {i === 2 ? (
                           <p>{v}</p>
-                        </a>
-                      </Link>
+                        ) : (
+                          <Link href="/">
+                            <a>
+                              <p>{v}</p>
+                            </a>
+                          </Link>
+                        )}
+                      </div>
                     );
                   })}
                 </Item>

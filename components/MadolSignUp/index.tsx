@@ -28,6 +28,7 @@ interface Props {
 
 function MadolSignUp(props: Props) {
   return (
+    // 在這裡添加css內層的樣式
     <Modal
       isOpen={props.modalIsOpen}
       onRequestClose={props.closeModal}
@@ -45,7 +46,6 @@ function MadolSignUp(props: Props) {
         </Name>
         <MailOrNumber>
           <label htmlFor="mail-number">Email or Phone Number</label>
-          {/* <br /> */}
           <input
             type="text"
             name="mail-number"

@@ -12,32 +12,36 @@ import {
   SpecialPrice,
 } from "./DeliverRestaurantsStyle";
 
+// 渲染資料
 const deliverRestaurantsData = [
-  { title: "Starbucks", pic: "/images/homePage/popular/1.jpg" },
+  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/1.jpg" },
   {
     title: "Mughal Masala Masala Masala Masala",
-    pic: "/images/homePage/popular/2.jpg",
+    pic: "/images/homePage/popularRestaurant/2.jpg",
   },
-  { title: "Woondal", pic: "/images/homePage/popular/3.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popular/4.jpg" },
-  { title: "Starbucks", pic: "/images/homePage/popular/5.jpg" },
-  { title: "Mughal Masala", pic: "/images/homePage/popular/6.jpg" },
-  { title: "Woondal", pic: "/images/homePage/popular/7.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popular/8.jpg" },
+  { title: "Woondal", pic: "/images/homePage/popularRestaurant/3.jpg" },
+  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/4.jpg" },
+  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/5.jpg" },
+  { title: "Mughal Masala", pic: "/images/homePage/popularRestaurant/6.jpg" },
+  { title: "Woondal", pic: "/images/homePage/popularRestaurant/7.jpg" },
+  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/8.jpg" },
 ];
 
 function DeliverRestaurants() {
   return (
     <Container>
       <DeliverRestaurantsWrap>
+        {/* 名稱 */}
         <DeliverRestaurantsTitle>
           184 Deliver Restaurants in New York
         </DeliverRestaurantsTitle>
+        {/* item區域 */}
         <DeliverRestaurantsItemGroup>
           {deliverRestaurantsData.map((v, i) => {
             return (
               <Link href="/FoodMenu" key={i}>
                 <a>
+                  {/* idnex 2 5 6 沒有特惠價 */}
                   <DeliverRestaurantsItem>
                     {i === 2 ? (
                       ""

@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { ItemGroup, Item, ItemCost, Cross } from "./MadolSearchStyle";
 import style from "./style.module.css";
 
+// 渲染資料
 const conditionData = [
   { title: "Categories", content: ["Pizza", "Pizza", "Pizza", "Pizza"] },
   { title: "Rating", content: ["4+", "4+", "4+", "4+"] },
@@ -14,6 +15,7 @@ const conditionData = [
   },
 ];
 
+// css 最外層的
 const customStyles = {
   overlay: { zIndex: 999, background: "rgba(127,127,127,.7)" },
 };
@@ -25,12 +27,14 @@ interface Props {
 
 function MadolSearch(props: Props) {
   return (
+    // 在這裡添加css內層的樣式
     <Modal
       isOpen={props.modalSearchIsOpen}
       onRequestClose={props.closeModalSearch}
       className={style.Modal}
       style={customStyles}
     >
+      {/* 關閉按鈕 */}
       <Cross onClick={props.closeModalSearch}>
         <ImCross />
       </Cross>
@@ -42,6 +46,7 @@ function MadolSearch(props: Props) {
               {v.content.map((v, ind) => {
                 return (
                   <div key={ind}>
+                    {/* index 2 是單選 要另外渲染 */}
                     {i === 2 ? (
                       <input type="radio" name="sort" />
                     ) : (

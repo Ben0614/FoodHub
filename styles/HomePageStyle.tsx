@@ -8,6 +8,7 @@ export const Category = styled.div`
   background-color: #f6f9fc;
   padding: ${(props) => props.theme.pd(12)} 0;
 `;
+// 桌機 grid
 export const CategoryItemGroup = styled.div`
   ${(props) => props.theme.screens.lg} {
     display: grid;
@@ -30,6 +31,7 @@ export const CategoryItem = styled.div`
     line-height: ${(props) => props.theme.lh(props.theme.fz(2)) + "px"};
     color: #000;
   }
+  /* 桌機 不用mb 用gap */
   ${(props) => props.theme.screens.lg} {
     margin-bottom: 0;
   }
@@ -40,12 +42,14 @@ export const Collections = styled.div`
     color: #ccc;
     font-size: 14px;
     line-height: ${(props) => props.theme.lh(14) + "px"};
+    margin-bottom: ${(props) => props.theme.mg()};
   }
 `;
 export const CollectionsTitle = styled.h2`
   font-size: ${(props) => props.theme.fz(5) + "px"};
   line-height: ${(props) => props.theme.lh(props.theme.fz(5)) + "px"};
 `;
+// 桌機 flex
 export const ComputerFlex = styled.div`
   ${(props) => props.theme.screens.lg} {
     display: flex;
@@ -55,13 +59,14 @@ export const ComputerFlex = styled.div`
 export const View = styled.h4`
   color: #e94460;
   margin-bottom: ${(props) => props.theme.mg(5)};
+  cursor: pointer;
 `;
 export const CollectionsItemGroup = styled(CategoryItemGroup)``;
-
 export const CollectionsItem = styled.div<Props>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  /* 餐廳背景圖 */
   background: url(${(props) => props.pic}) no-repeat;
   background-size: cover;
   width: 100%;
@@ -96,6 +101,7 @@ export const CuisineTitle = styled(CollectionsTitle)`
   margin-bottom: ${(props) => props.theme.mg(8)};
 `;
 export const CuisineItemGroup = styled(CategoryItemGroup)`
+  /* 桌機 grid */
   ${(props) => props.theme.screens.xl} {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
@@ -116,7 +122,8 @@ export const CuisineItem = styled.div`
 export const MobileApp = styled(Category)`
   background-color: #f6f9fc;
   padding: ${(props) => props.theme.pd(12)} 0;
-  color: #aaa;
+  color: #999;
+  /* image包一層pic 讓圖片置中 */
   .pic {
     width: 185px;
     height: 370px;
@@ -137,6 +144,7 @@ export const MobileApp = styled(Category)`
     }
     .radios {
       margin-bottom: ${(props) => props.theme.mg(3)};
+      /* 單選 */
       input[type="radio"] {
         width: 16px;
         height: 16px;
@@ -170,6 +178,7 @@ export const MobileApp = styled(Category)`
         border: none;
         border-radius: 0 5px 5px 0;
         font-size: ${(props) => props.theme.fz(1) + "px"};
+        cursor: pointer;
       }
     }
     .download {

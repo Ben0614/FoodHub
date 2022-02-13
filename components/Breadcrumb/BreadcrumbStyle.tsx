@@ -20,5 +20,5 @@ export const NewYork = styled.p`
 `;
 export const Now = styled.p`
   margin-left: ${(props) => props.theme.mg(2)};
-  color: #aaa;
+  color: #999;
 `;

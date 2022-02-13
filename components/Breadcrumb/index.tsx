@@ -10,6 +10,7 @@ interface Props {
 function Breadcrumb(props: Props) {
   return (
     <BreadcrumbWrap>
+      {/* 第一層 */}
       <Link href="/">
         <a>
           <Home>
@@ -18,6 +19,7 @@ function Breadcrumb(props: Props) {
           </Home>
         </a>
       </Link>
+      {/* 第二層 */}
       <Link href="/">
         <a>
           <NewYork>
@@ -26,6 +28,7 @@ function Breadcrumb(props: Props) {
           </NewYork>
         </a>
       </Link>
+      {/* 現在頁面 由父層頁面傳遞過來*/}
       <Now>{props.nowPage}</Now>
     </BreadcrumbWrap>
   );

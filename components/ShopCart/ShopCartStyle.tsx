@@ -12,9 +12,11 @@ export const ShopCartWrap = styled.div<Props>`
   width: 85%;
   height: 100vh;
   z-index: 9999;
+  /* 根據狀態判斷位置 開啟或關閉 */
   transform: ${(props) =>
     props.cartIsOpen ? "translateX(0)" : "translateX(100%)"};
   transition: 0.3s;
+  /* 桌機 */
   ${(props) => props.theme.screens.lg} {
     width: 350px;
   }
@@ -28,7 +30,7 @@ export const Top = styled.div`
     display: flex;
     align-items: center;
     font-size: ${(props) => props.theme.fz(1) + "px"};
-    color: #aaa;
+    color: #999;
     font-weight: 700;
     span {
       margin-left: ${(props) => props.theme.mg(1)};
@@ -48,9 +50,10 @@ export const Item = styled.div`
   align-items: center;
   margin-bottom: ${(props) => props.theme.mg(8)};
   color: #000;
+  /* X */
   svg {
     cursor: pointer;
-    color: #aaa;
+    color: #999;
   }
 `;
 export const Pic = styled.div`
@@ -62,6 +65,7 @@ export const Number = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* + - 按鈕 */
   button {
     position: relative;
     background-color: #fff;
@@ -70,6 +74,7 @@ export const Number = styled.div`
     width: 28px;
     height: 28px;
     font-size: ${(props) => props.theme.fz(1) + "px"};
+    cursor: pointer;
     svg {
       position: absolute;
       top: 50%;
@@ -82,16 +87,18 @@ export const Number = styled.div`
     margin-bottom: ${(props) => props.theme.mg()};
   }
   span {
-    color: #aaa;
+    color: #999;
     margin-bottom: ${(props) => props.theme.mg()};
   }
 `;
 export const Content = styled.div`
   display: flex;
   .text {
+    /* 與圖片間隔 */
     margin-left: ${(props) => props.theme.mg(2)};
     .title {
       width: 120px;
+      /* 一行顯示 隱藏超出 */
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

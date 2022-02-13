@@ -5,38 +5,40 @@ import Image from "next/image";
 import { AiFillStar } from "react-icons/ai";
 
 import {
-  PopularWrap,
-  PopularTitle,
-  PopularItemGroup,
-  PopularItem,
-  SpecialPrice
-} from "./PopularStyle";
+  PopularRestaurantWrap,
+  PopularRestaurantTitle,
+  PopularRestaurantItemGroup,
+  PopularRestaurantItem,
+  SpecialPrice,
+} from "./PopularRestaurantStyle";
 
-const PopularData = [
-  { title: "Starbucks", pic: "/images/homePage/popular/1.jpg" },
+// 渲染資料
+const PopularRestaurantData = [
+  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/1.jpg" },
   {
     title: "Mughal Masala Masala Masala Masala",
-    pic: "/images/homePage/popular/2.jpg",
+    pic: "/images/homePage/popularRestaurant/2.jpg",
   },
-  { title: "Woondal", pic: "/images/homePage/popular/3.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popular/4.jpg" },
-  { title: "Starbucks", pic: "/images/homePage/popular/5.jpg" },
-  { title: "Mughal Masala", pic: "/images/homePage/popular/6.jpg" },
-  { title: "Woondal", pic: "/images/homePage/popular/7.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popular/8.jpg" },
+  { title: "Woondal", pic: "/images/homePage/popularRestaurant/3.jpg" },
+  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/4.jpg" },
+  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/5.jpg" },
+  { title: "Mughal Masala", pic: "/images/homePage/popularRestaurant/6.jpg" },
+  { title: "Woondal", pic: "/images/homePage/popularRestaurant/7.jpg" },
+  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/8.jpg" },
 ];
 
-function Popular() {
+function PopularRestaurant() {
   return (
-    <PopularWrap>
+    <PopularRestaurantWrap>
       <Container>
-        <PopularTitle>Popular Near You</PopularTitle>
-        <PopularItemGroup>
-          {PopularData.map((v, i) => {
+        <PopularRestaurantTitle>Popular Near You</PopularRestaurantTitle>
+        <PopularRestaurantItemGroup>
+          {PopularRestaurantData.map((v, i) => {
             return (
               <Link href="/FoodMenu" key={i}>
                 <a>
-                  <PopularItem>
+                  {/* index 2 5 6 沒有特惠價 */}
+                  <PopularRestaurantItem>
                     {i === 2 ? (
                       ""
                     ) : i === 5 ? (
@@ -53,6 +55,7 @@ function Popular() {
                       width="740px"
                       objectFit="cover"
                     />
+                    {/* 文字區域 */}
                     <div className="top">
                       <h3 className="title">{v.title}</h3>
                       <p className="star">
@@ -64,15 +67,15 @@ function Popular() {
                       <p className="price">$20</p>
                       <p className="time">• Cofee, set menu • 15 - 20 min</p>
                     </div>
-                  </PopularItem>
+                  </PopularRestaurantItem>
                 </a>
               </Link>
             );
           })}
-        </PopularItemGroup>
+        </PopularRestaurantItemGroup>
       </Container>
-    </PopularWrap>
+    </PopularRestaurantWrap>
   );
 }
 
-export default Popular;
+export default PopularRestaurant;

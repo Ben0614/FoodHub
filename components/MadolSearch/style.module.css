@@ -1,3 +1,4 @@
+/* 左側滑入 */
 @keyframes positionLeft {
   from {
     left: -100%;
@@ -22,6 +23,7 @@
   max-height: 100vh;
   overflow-y: auto;
 }
+/* 桌機 */
 @media screen and (min-width: 992px) {
   .Modal {
     display: none;

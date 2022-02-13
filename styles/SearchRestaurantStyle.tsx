@@ -3,8 +3,7 @@ import styled from "styled-components";
 interface Props {
   index?: number;
   activeInput?: boolean;
-  isOpen?: boolean;
-  listChange?: number;
+  buttonChange?: boolean;
 }
 
 export const Buttons = styled.div`
@@ -17,7 +16,6 @@ export const Buttons = styled.div`
 `;
 export const ListButtons = styled.ul`
   margin-bottom: ${(props) => props.theme.mg(5)};
-
   display: grid;
   column-gap: 5px;
   text-align: center;
@@ -29,10 +27,11 @@ export const ListButtons = styled.ul`
 export const ButtonsLi = styled.li<Props>`
   padding: ${(props) => props.theme.pd(3)} 0;
   transition: 0.3s;
-  color: ${(props) => (props.isOpen ? "#d23f57" : "#aaa")};
+  color: ${(props) => (props.buttonChange ? "#d23f57" : "#999")};
   border-bottom: ${(props) =>
-    props.isOpen ? "2px solid #d23f57" : "2px solid transparent"};
-  background-color: ${(props) => (props.isOpen ? "#fae8eb" : "transparent")};
+    props.buttonChange ? "2px solid #d23f57" : "2px solid transparent"};
+  background-color: ${(props) =>
+    props.buttonChange ? "#fae8eb" : "transparent"};
   cursor: pointer;
 `;
 export const FilterButton = styled.button<Props>`
@@ -90,7 +89,7 @@ export const Item = styled.li<Props>`
     > input {
     }
     > span {
-      color: #aaa;
+      color: #999;
     }
   }
 `;
@@ -103,16 +102,20 @@ export const ItemCost = styled(Item)<Props>`
       display: flex;
       justify-content: center;
       align-items: center;
+      /* 20 40 圓形 */
       background-color: #d23f57;
       width: 32px;
       height: 32px;
       color: #fff;
       border-radius: 50% 50% 0;
+      /* border-radius 之後要轉正 */
       transform: rotate(45deg);
       margin-left: ${(props) => props.theme.mg(4)};
 
       span {
+        /* 會受到父層影響 要轉正 */
         transform: rotate(-45deg);
+        /* 製作獻上小圓點 */
         &::after {
           content: "";
           position: absolute;

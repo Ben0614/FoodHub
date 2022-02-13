@@ -11,6 +11,7 @@ import { NavHeight, NavWrap, Search, Cart } from "./NavStyle";
 
 interface Props {
   isShow: boolean;
+  firstHeight: boolean;
 }
 
 function Nav(props: Props) {
@@ -26,7 +27,8 @@ function Nav(props: Props) {
     setModalIsOpen(false);
   }
   return (
-    <NavHeight>
+    // firstHeight 如果一開始不顯示 高度就給0 否則會空出一塊區域
+    <NavHeight firstHeight={props.firstHeight}>
       <NavWrap isShow={props.isShow}>
         <Link href="/">
           <a>

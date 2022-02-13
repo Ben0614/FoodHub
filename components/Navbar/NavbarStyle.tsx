@@ -13,9 +13,11 @@ export const NavbarWrap = styled.div<Props>`
   width: 90%;
   height: 100vh;
   z-index: 9999;
+  /* 根據navbarIsOpen狀態判斷開啟或關閉 */
   transform: ${(props) =>
     props.navbarIsOpen ? "translateX(0)" : "translateX(-100%)"};
   transition: 0.3s;
+  /* 桌機 修改大小 */
   ${(props) => props.theme.screens.lg} {
     width: 350px;
   }
@@ -29,10 +31,11 @@ export const Top = styled.div`
   margin-bottom: ${(props) => props.theme.mg(4)};
   h2 {
     margin-left: ${(props) => props.theme.mg(1)};
-    font-size: ${(props) => props.theme.fz(1) + "px"};
+    font-size: ${(props) => props.theme.fz(2) + "px"};
     font-weight: 700;
   }
   svg {
+    font-size: ${(props) => props.theme.fz(1) + "px"};
     cursor: pointer;
   }
 `;
@@ -44,7 +47,8 @@ export const Title = styled.div<Props>`
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  color: ${(props) => (props.isShowList ? "#d23f57" : "#aaa")};
+  /* 根據isShowList狀態 判斷變色 */
+  color: ${(props) => (props.isShowList ? "#d23f57" : "#999")};
   margin-bottom: ${(props) => props.theme.mg(4)};
   font-size: ${(props) => props.theme.fz() + "px"};
   h3 {
@@ -55,6 +59,7 @@ export const Title = styled.div<Props>`
   }
 `;
 export const TitleArrow = styled.div<Props>`
+  /* 根據isShowList狀態 判斷 位置 */
   transform: ${(props) => (props.isShowList ? "rotate(-180deg)" : "rotate(0)")};
   transition: 0.3s;
 `;
@@ -62,6 +67,8 @@ export const Restaurant = styled(Dashboards)``;
 export const ItemGroup = styled.div<Props>`
   margin-bottom: ${(props) => props.theme.mg(4)};
   transition: 0.3s;
+  /* 預設高度為0 都不開啟 */
+  /* 用hidden隱藏 */
   overflow: hidden;
   height: 0;
 `;
@@ -69,6 +76,6 @@ export const Item = styled.p`
   width: 80%;
   font-size: ${(props) => props.theme.fz() + "px"};
   margin: 0 0 ${(props) => props.theme.mg(3)} auto;
-  color: #aaa;
+  color: #999;
   cursor: pointer;
 `;

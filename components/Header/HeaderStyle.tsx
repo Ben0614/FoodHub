@@ -1,12 +1,14 @@
 import styled from "styled-components";
 
 export const HeaderWrap = styled.header`
+  /* 背景圖 */
   background: url("/images/header-bg.png");
   width: 100%;
   height: 100vh;
   background-size: cover;
   padding: 35px 0 70px;
   color: #fff;
+  /* 桌機 修改高度 */
   ${(props) => props.theme.screens.lg} {
     height: 500px;
   }
@@ -30,6 +32,7 @@ export const Nav = styled.div`
       display: flex;
       align-items: center;
       cursor: pointer;
+      /* 桌機 */
       span {
         display: none;
         margin-left: ${(props) => props.theme.mg(2)};
@@ -41,6 +44,7 @@ export const Nav = styled.div`
     .icons {
       width: 25%;
       .user {
+        /* 桌機 */
         span {
           display: block;
         }
@@ -86,6 +90,7 @@ export const Search = styled.div`
   svg {
     color: #757575;
   }
+  /* 各50% 換行 */
   h4,
   input,
   button {
@@ -99,6 +104,7 @@ export const Search = styled.div`
       margin-left: ${(props) => props.theme.mg(1)};
     }
   }
+  /* locate me */
   h4:nth-child(2) {
     transition: 0.3s;
     cursor: pointer;
@@ -106,6 +112,7 @@ export const Search = styled.div`
       background-color: #ccc;
     }
   }
+  /* 修改input 外框focus顏色 */
   input {
     flex: 1;
     &:focus {
@@ -120,6 +127,7 @@ export const Search = styled.div`
     font-size: ${(props) => props.theme.fz(1) + "px"};
     cursor: pointer;
   }
+  /* 桌機 */
   ${(props) => props.theme.screens.lg} {
     width: 90%;
     margin: 0 auto;

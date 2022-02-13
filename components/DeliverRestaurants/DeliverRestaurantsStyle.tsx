@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-export const DeliverRestaurantsWrap = styled.div`
-`;
+export const DeliverRestaurantsWrap = styled.div``;
 export const DeliverRestaurantsTitle = styled.h2`
   font-size: ${(props) => props.theme.fz(2) + "px"};
   line-height: ${(props) => props.theme.lh(props.theme.fz(2)) + "px"};
@@ -9,6 +8,7 @@ export const DeliverRestaurantsTitle = styled.h2`
   margin-bottom: ${(props) => props.theme.mg(2)};
 `;
 export const DeliverRestaurantsItemGroup = styled.div`
+  /* 桌機用grid排列 */
   ${(props) => props.theme.screens.lg} {
     display: grid;
     gap: 20px;
@@ -24,9 +24,11 @@ export const DeliverRestaurantsItem = styled.div`
   border: 1px solid #ccc;
   overflow: hidden;
   margin-bottom: ${(props) => props.theme.mg(5)};
+  /* 桌機mb改為0 讓gap分隔 */
   ${(props) => props.theme.screens.lg} {
     margin-bottom: 0;
   }
+  /* 文字區域 */
   .top,
   .bottom {
     display: flex;
@@ -55,10 +57,11 @@ export const DeliverRestaurantsItem = styled.div`
     }
     .time {
       margin-left: ${(props) => props.theme.mg(2)};
-      color: #aaa;
+      color: #999;
     }
   }
   .title {
+    /* 一行顯示 超過隱藏 */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -68,6 +71,7 @@ export const DeliverRestaurantsItem = styled.div`
     color: #000;
   }
 `;
+// 特惠價
 export const SpecialPrice = styled.span`
   position: absolute;
   top: 5%;
