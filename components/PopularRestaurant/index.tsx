@@ -2,6 +2,7 @@ import React from "react";
 import Container from "../Container";
 import Link from "next/link";
 import Image from "next/image";
+import { popularRestaurantData } from "../../data";
 import { AiFillStar } from "react-icons/ai";
 
 import {
@@ -12,28 +13,13 @@ import {
   SpecialPrice,
 } from "./PopularRestaurantStyle";
 
-// 渲染資料
-const PopularRestaurantData = [
-  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/1.jpg" },
-  {
-    title: "Mughal Masala Masala Masala Masala",
-    pic: "/images/homePage/popularRestaurant/2.jpg",
-  },
-  { title: "Woondal", pic: "/images/homePage/popularRestaurant/3.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/4.jpg" },
-  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/5.jpg" },
-  { title: "Mughal Masala", pic: "/images/homePage/popularRestaurant/6.jpg" },
-  { title: "Woondal", pic: "/images/homePage/popularRestaurant/7.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/8.jpg" },
-];
-
 function PopularRestaurant() {
   return (
     <PopularRestaurantWrap>
       <Container>
         <PopularRestaurantTitle>Popular Near You</PopularRestaurantTitle>
         <PopularRestaurantItemGroup>
-          {PopularRestaurantData.map((v, i) => {
+          {popularRestaurantData.map((v, i) => {
             return (
               <Link href="/FoodMenu" key={i}>
                 <a>

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import { dashboardsData, restaurantData } from "../../data";
 import { ImCross } from "react-icons/im";
-import {
-  MdKeyboardArrowDown,
-  MdOutlineSpaceDashboard,
-} from "react-icons/md";
+import { MdKeyboardArrowDown, MdOutlineSpaceDashboard } from "react-icons/md";
 import { BiRestaurant } from "react-icons/bi";
 import {
   NavbarWrap,
@@ -15,22 +13,6 @@ import {
   ItemGroup,
   Item,
 } from "./NavbarStyle";
-
-// 渲染資料
-const DashboardsData = [
-  "Review",
-  "Photos",
-  "Order List",
-  "Order History",
-  "Followers",
-  "Bookmarks",
-];
-// 渲染資料
-const RestaurantData = [
-  "Food Menu",
-  "Restaurant Two Column",
-  "Search Restaurant",
-];
 
 interface Props {
   navbarIsOpen: boolean;
@@ -125,7 +107,7 @@ function Navbar(props: Props) {
         </Title>
         {/* item區域 */}
         <ItemGroup ref={oneGroupRef}>
-          {DashboardsData.map((v, i) => {
+          {dashboardsData.map((v, i) => {
             return <Item key={i}>{v}</Item>;
           })}
         </ItemGroup>
@@ -148,7 +130,7 @@ function Navbar(props: Props) {
           </TitleArrow>
         </Title>
         <ItemGroup ref={twoGroupRef}>
-          {RestaurantData.map((v, i) => {
+          {restaurantData.map((v, i) => {
             return <Item key={i}>{v}</Item>;
           })}
         </ItemGroup>

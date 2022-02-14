@@ -10,6 +10,7 @@ export const NavbarWrap = styled.div<Props>`
   top: 0;
   left: 0;
   background-color: #fff;
+  border-right: 1px solid #ccc;
   width: 90%;
   height: 100vh;
   z-index: 9999;

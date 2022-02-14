@@ -5,10 +5,18 @@ interface Props {
 }
 
 export const ShopCartWrap = styled.div<Props>`
+  /* flex 為了讓結帳按鈕可以保持在底部 */
+  /* 按鈕的css要設定margin-top: auto */
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 0;
   right: 0;
   background-color: #fff;
+  border-left: 1px solid #ccc;
+  /* 使用滾軸 */
+  max-height: 100vh;
+  overflow-y: auto;
   width: 85%;
   height: 100vh;
   z-index: 9999;
@@ -48,6 +56,7 @@ export const Item = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-bottom: ${(props) => props.theme.mg(8)};
   color: #000;
   /* X */
@@ -119,11 +128,11 @@ export const Content = styled.div`
 `;
 
 export const Accounts = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  /* margin-top: auto 為了讓結帳按鈕可以保持在底部 */
+  margin-top: auto;
   padding: 0 ${(props) => props.theme.pd(3)};
 `;
 export const AccountsButton = styled.button`

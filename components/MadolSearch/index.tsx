@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { conditionData } from "../../data";
 import { ImCross } from "react-icons/im";
 import Modal from "react-modal";
 import { ItemGroup, Item, ItemCost, Cross } from "./MadolSearchStyle";
 import style from "./style.module.css";
-
-// 渲染資料
-const conditionData = [
-  { title: "Categories", content: ["Pizza", "Pizza", "Pizza", "Pizza"] },
-  { title: "Rating", content: ["4+", "4+", "4+", "4+"] },
-  {
-    title: "Sort By",
-    content: ["Popularity", "Popularity", "Popularity", "Popularity"],
-  },
-];
 
 // css 最外層的
 const customStyles = {

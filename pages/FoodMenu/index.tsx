@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
-import { AiFillStar } from "react-icons/ai";
-import { BiTimeFive, BiCommentDetail, BiLike } from "react-icons/bi";
-import { GiPositionMarker, GiHamburgerMenu } from "react-icons/gi";
-import { ImEarth } from "react-icons/im";
-import { BsPlusLg } from "react-icons/bs";
+import { State, Obj } from "../../type";
+import {
+  foodMenuPicPath,
+  foodMenuListButtonData,
+  inputContent,
+  selectOptionContent,
+  reviews,
+  menuData,
+  recommendedItemData,
+} from "../../data";
 import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Up from "../../components/Up";
@@ -13,6 +19,11 @@ import Nav from "../../components/Nav";
 import MadolFoodMenu from "../../components/MadolFoodMenu";
 import Localities from "../../components/Localities";
 import Breadcrumb from "../../components/Breadcrumb";
+import { AiFillStar } from "react-icons/ai";
+import { BiTimeFive, BiCommentDetail, BiLike } from "react-icons/bi";
+import { GiPositionMarker, GiHamburgerMenu } from "react-icons/gi";
+import { ImEarth } from "react-icons/im";
+import { BsPlusLg } from "react-icons/bs";
 import {
   Starbucks,
   PicGroup,
@@ -55,92 +66,11 @@ import {
   ReviewItemLikeComment,
 } from "../../styles/FoodMenuStyle";
 
-// 圖片path
-const picPath = [
-  "/images/foodMenu/1.png",
-  "/images/foodMenu/2.png",
-  "/images/foodMenu/3.png",
-  "/images/foodMenu/4.png",
-  "/images/foodMenu/5.png",
-];
 // 星星數量
 const starNumber: Array<number> = [];
 for (let i = 1; i <= 5; i++) {
   starNumber.push(i);
 }
-// 評論數量
-const RecommendItemNumber: Array<number> = [];
-for (let i = 1; i <= 4; i++) {
-  RecommendItemNumber.push(i);
-}
-// 渲染資料
-const listButtonData = ["Order Online", "Book a Table", "Reviews"];
-const inputContent = ["Fist Name", "Last Name", "Email", "Phone"];
-// select 第一個為空 不顯示
-const selectOptionContent = ["", "Foo", " Bar", "Fizz", "Buzz"];
-const reviews = [
-  {
-    headHost: "/images/foodMenu/reviews/item1-1.png",
-    name: "Abriella Bond",
-    reviewsNumber: "2 Reviews, 9 Followers",
-    star: "4.0",
-    time: "3 Days Ago",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.",
-    foodPic: {
-      one: "/images/foodMenu/reviews/item1-2.png",
-      two: "/images/foodMenu/reviews/item1-3.png",
-    },
-    reviewsAccount: "4 Likes, 2 Comments",
-    like: "Like",
-    comment: "Comment",
-  },
-  {
-    headHost: "/images/foodMenu/reviews/item2-1.png",
-    name: "Emmet McDermott",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.",
-    headHost2: "/images/foodMenu/reviews/item2-2.png",
-    name2: "Emmet McDermott",
-    content2:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.",
-  },
-  {
-    headHost: "/images/foodMenu/reviews/item3.jpg",
-    name: "Abriella Bond",
-    reviewsNumber: "2 Reviews, 9 Followers",
-    star: "4.0",
-    time: "3 Days Ago",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.",
-    reviewsAccount: "4 Likes, 2 Comments",
-    like: "Like",
-    comment: "Comment",
-  },
-  {
-    headHost: "/images/foodMenu/reviews/item4.jpg",
-    name: "Abriella Bond",
-    reviewsNumber: "2 Reviews, 9 Followers",
-    star: "4.0",
-    time: "3 Days Ago",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Varius massa id ut mattis. Facilisis vitae gravida egestas ac account.",
-    reviewsAccount: "4 Likes, 2 Comments",
-    like: "Like",
-    comment: "Comment",
-  },
-];
-const menuData = [
-  "DPB Special Combos (10)",
-  "Chineese Starters (30)",
-  "Chinese Main Course (75)",
-  "Indian Main Course (63)",
-  "Rice & Pulao (7)",
-  "Desserts (1)",
-  "Soup & wonton (15)",
-  "Accompaniment (4)",
-  "Biryani (1)",
-];
 
 function FoodMenu() {
   // Fixed Nav 開關狀態
@@ -160,6 +90,23 @@ function FoodMenu() {
   function closeModalFoodMunu() {
     setModalFoodMenuIsOpen(false);
   }
+  const dispatch = useDispatch();
+
+  const setCartItem = useCallback(
+    (cartData: Array<Obj>) => {
+      dispatch({
+        type: "cart-item",
+        payload: cartData,
+      });
+    },
+    [dispatch]
+  );
+
+  const getCartItemData = useSelector((state: State) => {
+    return state.cart;
+  });
+
+  // console.log("...getCartItemState", ...getCartItemData);
 
   return (
     <div>
@@ -175,7 +122,7 @@ function FoodMenu() {
       <Starbucks>
         <Container>
           <PicGroup>
-            {picPath.map((v, i) => {
+            {foodMenuPicPath.map((v, i) => {
               return (
                 <Pic key={i} index={i}>
                   <Image src={v} layout="fill" objectFit="cover" alt="" />
@@ -221,7 +168,7 @@ function FoodMenu() {
           {/* 主要區域 */}
           <Main>
             <ListButtons>
-              {listButtonData.map((v, i) => {
+              {foodMenuListButtonData.map((v, i) => {
                 return (
                   // list按鈕 切換list區域
                   // 根據listChange是否等於i判斷 true開起 false關閉
@@ -260,44 +207,59 @@ function FoodMenu() {
                 <RecommendMain>
                   <RecommendTitle>Recommended</RecommendTitle>
                   <RecommendItemGroup>
-                    {RecommendItemNumber.map((v) => {
+                    {recommendedItemData.map((v, i) => {
                       return (
-                        <RecommendItem key={v}>
+                        <RecommendItem key={i}>
                           <div className="left">
                             <div className="pic">
                               <Image
-                                src="/images/foodMenu/6.png"
+                                src={v.pic}
                                 height="150px"
                                 width="150px"
                                 alt=""
                               />
                             </div>
                             <div className="text-content">
-                              <div className="title">
-                                Tandoori Chicken (Full)
-                              </div>
+                              <div className="title">{v.title}</div>
                               <Link href="javascipt:void(0)">
                                 <a>MUST TRY</a>
                               </Link>
                               <RecommendStar>
-                                {starNumber.map((v, i) => {
-                                  return <AiFillStar key={i} />;
+                                {starNumber.map((v) => {
+                                  return <AiFillStar key={v} />;
                                 })}
                                 <p>
                                   <span>(57)</span>
                                 </p>
                               </RecommendStar>
                               <p className="price">
-                                <span>$25</span>
-                                <span>$22.5</span>
+                                <span>{v.price}</span>
+                                <span>{v.special_price}</span>
                                 <span>10% off</span>
                               </p>
-                              <p className="meal-content">
-                                (4 Pcs mutton in chicken keema gravy)
-                              </p>
+                              <p className="meal-content">{v.meal_content}</p>
                             </div>
                           </div>
-                          <AddButton>
+                          <AddButton
+                            onClick={() => {
+                              // 餐點不重覆加入
+                              const index = getCartItemData.findIndex((val) => {
+                                return val.id === v.id;
+                              });
+                              if (index === -1) {
+                                const item = {
+                                  id: v.id,
+                                  title: v.title,
+                                  pic: v.pic,
+                                  price: v.price,
+                                  special_price: v.special_price,
+                                  amount: 1,
+                                };
+                                const cartData = [item, ...getCartItemData];
+                                setCartItem(cartData);
+                              }
+                            }}
+                          >
                             <span>ADD</span> <BsPlusLg />
                           </AddButton>
                         </RecommendItem>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
+import { State } from "../../type";
 import Container from "../Container";
 import ShopCart from "../ShopCart";
 import Navbar from "../Navbar";
@@ -8,7 +10,6 @@ import MadolLogin from "../MadolLogin";
 import { BiUserCircle, BiCurrentLocation } from "react-icons/bi";
 import { BsCart3 } from "react-icons/bs";
 import { GiHamburgerMenu, GiPositionMarker } from "react-icons/gi";
-
 import {
   HeaderWrap,
   Nav,
@@ -17,6 +18,7 @@ import {
   SecondTitle,
   Search,
 } from "./HeaderStyle";
+
 
 function Header() {
   // user模態框
@@ -33,6 +35,11 @@ function Header() {
   function closeModal() {
     setModalIsOpen(false);
   }
+
+  // 獲取購物車內的商品數量
+  const cartItemTotal = useSelector((state: State) => {
+    return state.cart.length;
+  });
 
   return (
     <HeaderWrap>
@@ -58,7 +65,7 @@ function Header() {
               }}
             >
               <BsCart3 />
-              <span>(8)</span>
+              <span>({cartItemTotal})</span>
             </Cart>
             {/* navbar 點擊開啟模態框 */}
             <GiHamburgerMenu

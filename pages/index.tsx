@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
+import { categoryData, collectionsData, cuisineData } from "../data";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import Container from "../components/Container";
 import Header from "../components/Header";
@@ -27,62 +28,6 @@ import {
   MobileApp,
   ComputerFlex,
 } from "../styles/HomePageStyle";
-
-// 渲染資料
-const CategoryData = [
-  { pic: "/images/homePage/category/1.jpg", title: "Order Food Online" },
-  { pic: "/images/homePage/category/2.jpg", title: "Go Out For Meal" },
-  { pic: "/images/homePage/category/3.jpg", title: "Nightlife & Clubs" },
-  { pic: "/images/homePage/category/4.jpg", title: "Pro Membership" },
-];
-const CollectionsData = [
-  {
-    pic: "/images/homePage/collections/1.png",
-    title: "Most Searched of 2020",
-    place: "30 Places",
-  },
-  {
-    pic: "/images/homePage/collections/2.png",
-    title: "Best Openings of 2020",
-    place: "30 Places",
-  },
-  {
-    pic: "/images/homePage/collections/3.png",
-    title: "Trending This Week",
-    place: "30 Places",
-  },
-  {
-    pic: "/images/homePage/collections/4.png",
-    title: "Best Of New York",
-    place: "30 Places",
-  },
-];
-const CuisineData = [
-  {
-    pic: "/images/homePage/cuisine/1.png",
-    title: "Italian",
-  },
-  {
-    pic: "/images/homePage/cuisine/2.png",
-    title: "Chinesse",
-  },
-  {
-    pic: "/images/homePage/cuisine/3.png",
-    title: "Japanesse",
-  },
-  {
-    pic: "/images/homePage/cuisine/4.png",
-    title: "Indian",
-  },
-  {
-    pic: "/images/homePage/cuisine/5.png",
-    title: "Thai Food",
-  },
-  {
-    pic: "/images/homePage/cuisine/6.png",
-    title: "Mexican",
-  },
-];
 
 const Home: NextPage = () => {
   // Fixed Nav 開關狀態
@@ -122,7 +67,7 @@ const Home: NextPage = () => {
       <Category>
         <Container>
           <CategoryItemGroup>
-            {CategoryData.map((v, i) => {
+            {categoryData.map((v, i) => {
               return (
                 <Link href="/FoodMenu" key={i}>
                   <a>
@@ -156,7 +101,7 @@ const Home: NextPage = () => {
             <View>View all collections</View>
           </ComputerFlex>
           <CollectionsItemGroup>
-            {CollectionsData.map((v, i) => {
+            {collectionsData.map((v, i) => {
               return (
                 <Link href="/SearchRestaurant" key={i}>
                   <a>
@@ -181,7 +126,7 @@ const Home: NextPage = () => {
         <Container>
           <CuisineTitle>Browse By Cuisine</CuisineTitle>
           <CuisineItemGroup>
-            {CuisineData.map((v, i) => {
+            {cuisineData.map((v, i) => {
               return (
                 <Link href="/FoodMenu" key={i}>
                   <a>

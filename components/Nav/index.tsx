@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
+import { State } from "../../type";
 import MadolLogin from "../MadolLogin";
 import ShopCart from "../ShopCart";
 import Navbar from "../Navbar";
@@ -26,6 +28,12 @@ function Nav(props: Props) {
   function closeModal() {
     setModalIsOpen(false);
   }
+
+  // 獲取購物車內的商品數量
+  const cartItemTotal = useSelector((state: State) => {
+    return state.cart.length;
+  });
+
   return (
     // firstHeight 如果一開始不顯示 高度就給0 否則會空出一塊區域
     <NavHeight firstHeight={props.firstHeight}>
@@ -58,7 +66,7 @@ function Nav(props: Props) {
             }}
           >
             <BsCart3 />
-            <span>(8)</span>
+            <span>({cartItemTotal})</span>
           </Cart>
           <GiHamburgerMenu
             onClick={() => {

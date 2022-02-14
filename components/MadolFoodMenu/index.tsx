@@ -1,22 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import { menuData } from "../../data";
 import { ImCross } from "react-icons/im";
 import Modal from "react-modal";
 import { ItemGroup, Item, Cross } from "./MadolFoodMenuStyle";
 import style from "./style.module.css";
-
-// 渲染資料
-const menuData = [
-  "DPB Special Combos (10)",
-  "Chineese Starters (30)",
-  "Chinese Main Course (75)",
-  "Indian Main Course (63)",
-  "Rice & Pulao (7)",
-  "Desserts (1)",
-  "Soup & wonton (15)",
-  "Accompaniment (4)",
-  "Biryani (1)",
-];
 
 // css 最外層的
 const customStyles = {

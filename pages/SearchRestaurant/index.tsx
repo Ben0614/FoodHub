@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { listButtonData, conditionData } from "../../data";
 import Container from "../../components/Container";
 import Nav from "../../components/Nav";
 import Up from "../../components/Up";
@@ -23,17 +24,6 @@ import {
   Item,
   ItemCost,
 } from "../../styles/SearchRestaurantStyle";
-
-// 渲染資料
-const listButtonData = ["Delivery", "Dining Out", "Nightlife"];
-const conditionData = [
-  { title: "Categories", content: ["Pizza", "Pizza", "Pizza", "Pizza"] },
-  { title: "Rating", content: ["4+", "4+", "4+", "4+"] },
-  {
-    title: "Sort By",
-    content: ["Popularity", "Popularity", "Popularity", "Popularity"],
-  },
-];
 
 function SearchRestaurant() {
   // Fixed Nav 開關狀態

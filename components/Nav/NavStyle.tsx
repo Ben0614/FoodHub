@@ -16,7 +16,7 @@ export const NavWrap = styled.div<Props>`
   top: 0;
   left: 0;
   background-color: #fff;
-  z-index: 100;
+  z-index: 999;
   display: flex;
   justify-content: space-between;
   align-items: center;

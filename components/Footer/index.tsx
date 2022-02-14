@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { footerData } from "../../data";
 import Container from "../Container";
 import { MdFacebook } from "react-icons/md";
 import {
@@ -18,39 +19,6 @@ import {
   Sns,
   ComputerFlex,
 } from "./FooterStyle";
-
-// 渲染資料
-const FooterData = [
-  {
-    title: "About Us",
-    link: [
-      "Careers",
-      "Our Stores",
-      "Our Cares",
-      "Terms & Conditions",
-      "Privacy Policy",
-    ],
-  },
-  {
-    title: "Customer Care",
-    link: [
-      "Help Center",
-      "How to Buy",
-      "Track Your Order",
-      "Corporate & Bulk Purchasing",
-      "Returns & Refunds",
-    ],
-  },
-  {
-    title: "Contact Us",
-    link: [
-      "Jalalabad 20/1, Shah Farid Road Sylhet, Bangladesh. Email: uilib@gmail.com Phone: +880 1123 456 780",
-      "Sylhet, Bangladesh.",
-      "Email: uilib@gmail.comr",
-      "Phone: +880 1123 456 780",
-    ],
-  },
-];
 
 // sns icon
 const sns = [
@@ -100,11 +68,11 @@ function Footer() {
           </div>
           {/* item區域 */}
           <ItemGroup>
-            {FooterData.map((v, i) => {
+            {footerData.map((v, i) => {
               return (
                 <Item key={i}>
                   <ItemTitle>{v.title}</ItemTitle>
-                  {FooterData[i].link.map((v, ind) => {
+                  {footerData[i].link.map((v, ind) => {
                     return (
                       // 最後一組不是link 要分開
                       <div key={ind}>
