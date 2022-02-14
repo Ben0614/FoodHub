@@ -191,6 +191,8 @@ export const RecommendItem = styled.li`
   margin-bottom: ${(props) => props.theme.mg(5)};
   text-align: center;
   .pic {
+    border-radius:5px;
+    overflow: hidden;
     margin-bottom: ${(props) => props.theme.mg(1)};
   }
   .title,

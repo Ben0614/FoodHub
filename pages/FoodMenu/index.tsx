@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
@@ -82,16 +82,8 @@ function FoodMenu() {
   // FoodMenuModal 開關狀態
   const [modalFoodMenuIsOpen, setModalFoodMenuIsOpen] = useState(false);
 
-  // 開啟
-  function openModalFoodMunu() {
-    setModalFoodMenuIsOpen(true);
-  }
-  // 關閉
-  function closeModalFoodMunu() {
-    setModalFoodMenuIsOpen(false);
-  }
   const dispatch = useDispatch();
-
+  // 加入購物車
   const setCartItem = useCallback(
     (cartData: Array<Obj>) => {
       dispatch({
@@ -101,12 +93,69 @@ function FoodMenu() {
     },
     [dispatch]
   );
+  // 傳送商品列表
+  const setRecommendItemList = useCallback(
+    (displayRecommendedItemData) => {
+      dispatch({
+        type: "list-data",
+        payload: displayRecommendedItemData,
+      });
+    },
+    [dispatch]
+  );
+  // 一掛載完就傳送商品列表
+  useEffect(() => {
+    setRecommendItemList(recommendedItemData);
+  }, [setRecommendItemList]);
 
+  // 類別篩選顯示
+  const handleCategory = (v: string) => {
+    // 如果點到的是Recomended 就傳送顯示全部商品
+    if (v === "Recomended") {
+      setRecommendItemList(recommendedItemData);
+    } else {
+      // 依據點到的類別名稱 和全部商品的category做篩選 最後顯示結果
+      const activeCategory = recommendedItemData.filter((item) => {
+        return item.category === v;
+      });
+      setRecommendItemList(activeCategory);
+    }
+  };
+
+  // 每種類別的商品數量
+  const categoryAmount = menuData.map((v) => {
+    // 迴圈類別欄 返回相同類別的
+    const categoryItemAmount = recommendedItemData.filter((item) => {
+      return item.category === v;
+    });
+    // 返回此類別的陣列長度(數量)
+    return categoryItemAmount.length;
+  });
+  // console.log("categoryAmount", categoryAmount);
+
+  // 獲取商品列表
+  const getRecommendItemList = useSelector((state: State) => {
+    return state.recommend;
+  });
+  // console.log("getRecommendItemList", getRecommendItemList);
+
+  // 獲取購物車內商品
   const getCartItemData = useSelector((state: State) => {
     return state.cart;
   });
-
   // console.log("...getCartItemState", ...getCartItemData);
+
+  // 商品總數
+  const menuItemAmount = recommendedItemData.length;
+
+  // 開啟
+  function openModalFoodMunu() {
+    setModalFoodMenuIsOpen(true);
+  }
+  // 關閉
+  function closeModalFoodMunu() {
+    setModalFoodMenuIsOpen(false);
+  }
 
   return (
     <div>
@@ -197,17 +246,36 @@ function FoodMenu() {
                 <MadolFoodMenu
                   modalFoodMenuIsOpen={modalFoodMenuIsOpen}
                   closeModalFoodMunu={closeModalFoodMunu}
+                  handleCategory={handleCategory}
+                  categoryAmount={categoryAmount}
+                  menuItemAmount={menuItemAmount}
                 />
                 <MenuGroup>
-                  <MenuItem>Recomended(40)</MenuItem>
+                  <MenuItem
+                    onClick={() => {
+                      handleCategory("Recomended");
+                    }}
+                  >
+                    Recomended ({menuItemAmount})
+                  </MenuItem>
                   {menuData.map((v, i) => {
-                    return <MenuItem key={i}>{v}</MenuItem>;
+                    return (
+                      <MenuItem
+                        key={i}
+                        onClick={() => {
+                          handleCategory(v);
+                        }}
+                      >
+                        {/* 種類名稱與商品數量 */}
+                        {v} ({categoryAmount[i]})
+                      </MenuItem>
+                    );
                   })}
                 </MenuGroup>
                 <RecommendMain>
                   <RecommendTitle>Recommended</RecommendTitle>
                   <RecommendItemGroup>
-                    {recommendedItemData.map((v, i) => {
+                    {getRecommendItemList.map((v, i) => {
                       return (
                         <RecommendItem key={i}>
                           <div className="left">
