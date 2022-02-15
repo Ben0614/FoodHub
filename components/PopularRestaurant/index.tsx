@@ -21,7 +21,7 @@ function PopularRestaurant() {
         <PopularRestaurantItemGroup>
           {popularRestaurantData.map((v, i) => {
             return (
-              <Link href="/FoodMenu" key={i}>
+              <Link href="/SearchRestaurant" key={i}>
                 <a>
                   {/* index 2 5 6 沒有特惠價 */}
                   <PopularRestaurantItem>
