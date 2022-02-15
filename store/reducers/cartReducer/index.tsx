@@ -1,7 +1,6 @@
-import { CartAction } from "../../../type";
+import { CartAction, Obj } from "../../../type";
 
-const CartReducer = (state = [], action: CartAction) => {
-  // console.log("action", action);
+const CartReducer = (state: Array<Obj> = [], action: CartAction) => {
   switch (action.type) {
     case "cart-item":
       return action.payload;

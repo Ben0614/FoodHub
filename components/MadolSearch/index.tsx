@@ -11,9 +11,19 @@ const customStyles = {
   overlay: { zIndex: 999, background: "rgba(127,127,127,.7)" },
 };
 
+type SortBy = string | number;
+type Rating = Array<string>;
+type Categories = Array<string>;
+
 interface Props {
   modalSearchIsOpen: boolean;
   closeModalSearch: () => void;
+  setSortBy: Function;
+  handleCheckRating: Function;
+  handleCheckCategories: Function;
+  sortBy: SortBy;
+  rating: Rating;
+  categories: Categories;
 }
 
 function MadolSearch(props: Props) {
@@ -34,16 +44,38 @@ function MadolSearch(props: Props) {
           return (
             <Item key={i}>
               <h3 className="title">{v.title}</h3>
-              {v.content.map((v, ind) => {
+              {v.content.map((val, ind) => {
                 return (
                   <div key={ind}>
-                    {/* index 2 是單選 要另外渲染 */}
+                    {/* index 2 是單選 分開 */}
+                    {/* 將content內容直接傳入sortBy */}
                     {i === 2 ? (
-                      <input type="radio" name="sort" />
+                      <input
+                        type="radio"
+                        name="sort"
+                        checked={props.sortBy === val}
+                        onChange={() => {
+                          props.setSortBy(val);
+                        }}
+                      />
                     ) : (
-                      <input type="checkbox" />
+                      // 多選框 index 1 是評分
+                      // 多選框 index 2 是種類
+                      <input
+                        type="checkbox"
+                        checked={
+                          i === 1
+                            ? props.rating.includes(val)
+                            : props.categories.includes(val)
+                        }
+                        onChange={() => {
+                          i === 1
+                            ? props.handleCheckRating(val)
+                            : props.handleCheckCategories(val);
+                        }}
+                      />
                     )}
-                    <span>{v}</span>
+                    <span>{val}</span>
                   </div>
                 );
               })}

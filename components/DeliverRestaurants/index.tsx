@@ -2,9 +2,8 @@ import React from "react";
 import Container from "../Container";
 import Link from "next/link";
 import Image from "next/image";
-import { deliverRestaurantsData } from "../../data";
+import { RestaurantObj } from "../../type";
 import { AiFillStar } from "react-icons/ai";
-
 import {
   DeliverRestaurantsWrap,
   DeliverRestaurantsTitle,
@@ -13,7 +12,11 @@ import {
   SpecialPrice,
 } from "./DeliverRestaurantsStyle";
 
-function DeliverRestaurants() {
+interface Props {
+  displayRestaurantsList: Array<RestaurantObj>;
+}
+
+function DeliverRestaurants(props: Props) {
   return (
     <Container>
       <DeliverRestaurantsWrap>
@@ -23,7 +26,7 @@ function DeliverRestaurants() {
         </DeliverRestaurantsTitle>
         {/* item區域 */}
         <DeliverRestaurantsItemGroup>
-          {deliverRestaurantsData.map((v, i) => {
+          {props.displayRestaurantsList.map((v, i) => {
             return (
               <Link href="/FoodMenu" key={i}>
                 <a>
@@ -49,12 +52,14 @@ function DeliverRestaurants() {
                       <h3 className="title">{v.title}</h3>
                       <p className="star">
                         <AiFillStar />
-                        <span>4.5</span> /5
+                        <span>{v.star}</span> /5
                       </p>
                     </div>
                     <div className="bottom">
-                      <p className="price">$20</p>
-                      <p className="time">• Cofee, set menu • 15 - 20 min</p>
+                      <p className="price">${v.price}</p>
+                      <p className="time">
+                        • {v.category}, set menu • 15 - 20 min
+                      </p>
                     </div>
                   </DeliverRestaurantsItem>
                 </a>

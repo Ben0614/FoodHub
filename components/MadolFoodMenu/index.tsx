@@ -1,8 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../type";
-import { menuData, recommendedItemData } from "../../data";
+import { menuData } from "../../data";
 import { ImCross } from "react-icons/im";
 import Modal from "react-modal";
 import { ItemGroup, Item, Cross } from "./MadolFoodMenuStyle";
@@ -38,7 +36,7 @@ function MadolFoodMenu(props: Props) {
       </Cross>
       {/* item區域 */}
       <ItemGroup>
-        {/* 第一個會保持選取 額外挑出來 */}
+        {/* 第一個是總數 額外挑出來 */}
         <Item
           onClick={() => {
             props.handleCategory("Recomended");

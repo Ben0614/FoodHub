@@ -10,9 +10,23 @@ export interface Obj {
   meal_content?: string;
 }
 
+// 餐廳Item
+export interface RestaurantObj {
+  title: string;
+  pic: string;
+  price: number;
+  star: number;
+  category: string;
+}
+
+// redux
 export interface State {
   cart: Array<Obj>;
   recommend: Array<Obj>;
+  searchRestaurantList: Array<RestaurantObj>;
+  categories: Array<string>;
+  rating: Array<string>;
+  sortBy: string;
 }
 
 // cartReducer
@@ -25,4 +39,15 @@ export interface CartAction {
 export interface RecommendAction {
   type: string;
   payload: Array<Obj>;
+}
+
+// searchRestaurant
+export interface SearchRestaurant {
+  type: string;
+  payload: Array<RestaurantObj>;
+}
+// searchRestaurant
+export interface SortBy {
+  type: string;
+  payload: string;
 }

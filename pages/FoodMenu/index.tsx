@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import Image from "next/image";
@@ -131,19 +131,16 @@ function FoodMenu() {
     // 返回此類別的陣列長度(數量)
     return categoryItemAmount.length;
   });
-  // console.log("categoryAmount", categoryAmount);
 
   // 獲取商品列表
   const getRecommendItemList = useSelector((state: State) => {
     return state.recommend;
   });
-  // console.log("getRecommendItemList", getRecommendItemList);
 
   // 獲取購物車內商品
   const getCartItemData = useSelector((state: State) => {
     return state.cart;
   });
-  // console.log("...getCartItemState", ...getCartItemData);
 
   // 商品總數
   const menuItemAmount = recommendedItemData.length;
@@ -156,6 +153,151 @@ function FoodMenu() {
   function closeModalFoodMunu() {
     setModalFoodMenuIsOpen(false);
   }
+
+  // 控制input和select狀態 start---------------------------------------------
+  const labelDateRef = useRef<HTMLLabelElement>(null);
+  const selectDateRef = useRef<HTMLSelectElement>(null);
+  const labelGusetsRef = useRef<HTMLLabelElement>(null);
+  const selectGusetsRef = useRef<HTMLSelectElement>(null);
+  const labelFistNamesRef = useRef<HTMLLabelElement>(null);
+  const inputFistNamesRef = useRef<HTMLInputElement>(null);
+  const labelLastNamesRef = useRef<HTMLLabelElement>(null);
+  const inputLastNamesRef = useRef<HTMLInputElement>(null);
+  const labelEmailsRef = useRef<HTMLLabelElement>(null);
+  const inputEmailsRef = useRef<HTMLInputElement>(null);
+  const labelPhonesRef = useRef<HTMLLabelElement>(null);
+  const inputPhonesRef = useRef<HTMLInputElement>(null);
+  // select
+  if (selectDateRef.current) {
+    if (labelDateRef.current) {
+      // 如果value不為空字串 就保持在上面
+      if (selectDateRef.current.value !== "") {
+        labelDateRef.current.style.top = "0%";
+        labelDateRef.current.style.color = "#000";
+        labelDateRef.current.style.fontSize = "12px";
+        labelDateRef.current.style.zIndex = "1";
+        // 如果是focus 就變紅字
+        if (selectDateRef.current === document.activeElement) {
+          labelDateRef.current.style.color = "#e94460";
+        }
+      }
+    }
+  }
+  if (selectGusetsRef.current) {
+    if (labelGusetsRef.current) {
+      if (selectGusetsRef.current.value !== "") {
+        labelGusetsRef.current.style.top = "0%";
+        labelGusetsRef.current.style.color = "#000";
+        labelGusetsRef.current.style.fontSize = "12px";
+        labelGusetsRef.current.style.zIndex = "1";
+        if (selectGusetsRef.current === document.activeElement) {
+          labelGusetsRef.current.style.color = "#e94460";
+        }
+      }
+    }
+  }
+  // input
+  if (inputFistNamesRef.current) {
+    if (labelFistNamesRef.current) {
+      // 如果value不為空字串 就保持在上面
+      if (inputFistNamesRef.current.value !== "") {
+        labelFistNamesRef.current.style.top = "0%";
+        labelFistNamesRef.current.style.color = "#000";
+        labelFistNamesRef.current.style.fontSize = "12px";
+        labelFistNamesRef.current.style.zIndex = "1";
+        // 如果是focus 就變紅字
+        if (inputFistNamesRef.current === document.activeElement) {
+          labelFistNamesRef.current.style.color = "#e94460";
+        }
+        // 如果value是空字串 字就在正中間
+      } else {
+        labelFistNamesRef.current.style.top = "50%";
+        labelFistNamesRef.current.style.color = "#000";
+        labelFistNamesRef.current.style.fontSize = "16px";
+        labelFistNamesRef.current.style.zIndex = "-1";
+        // 如果是focus 字就縮小變紅色 到上面
+        if (inputFistNamesRef.current === document.activeElement) {
+          labelFistNamesRef.current.style.top = "0%";
+          labelFistNamesRef.current.style.color = "#e94460";
+          labelFistNamesRef.current.style.fontSize = "12px";
+          labelFistNamesRef.current.style.zIndex = "1";
+        }
+      }
+    }
+  }
+  if (inputLastNamesRef.current) {
+    if (labelLastNamesRef.current) {
+      if (inputLastNamesRef.current.value !== "") {
+        labelLastNamesRef.current.style.top = "0%";
+        labelLastNamesRef.current.style.color = "#000";
+        labelLastNamesRef.current.style.fontSize = "12px";
+        labelLastNamesRef.current.style.zIndex = "1";
+        if (inputLastNamesRef.current === document.activeElement) {
+          labelLastNamesRef.current.style.color = "#e94460";
+        }
+      } else {
+        labelLastNamesRef.current.style.top = "50%";
+        labelLastNamesRef.current.style.color = "#000";
+        labelLastNamesRef.current.style.fontSize = "16px";
+        labelLastNamesRef.current.style.zIndex = "-1";
+        if (inputLastNamesRef.current === document.activeElement) {
+          labelLastNamesRef.current.style.top = "0%";
+          labelLastNamesRef.current.style.color = "#e94460";
+          labelLastNamesRef.current.style.fontSize = "12px";
+          labelLastNamesRef.current.style.zIndex = "1";
+        }
+      }
+    }
+  }
+  if (inputEmailsRef.current) {
+    if (labelEmailsRef.current) {
+      if (inputEmailsRef.current.value !== "") {
+        labelEmailsRef.current.style.top = "0%";
+        labelEmailsRef.current.style.color = "#000";
+        labelEmailsRef.current.style.fontSize = "12px";
+        labelEmailsRef.current.style.zIndex = "1";
+        if (inputEmailsRef.current === document.activeElement) {
+          labelEmailsRef.current.style.color = "#e94460";
+        }
+      } else {
+        labelEmailsRef.current.style.top = "50%";
+        labelEmailsRef.current.style.color = "#000";
+        labelEmailsRef.current.style.fontSize = "16px";
+        labelEmailsRef.current.style.zIndex = "-1";
+        if (inputEmailsRef.current === document.activeElement) {
+          labelEmailsRef.current.style.top = "0%";
+          labelEmailsRef.current.style.color = "#e94460";
+          labelEmailsRef.current.style.fontSize = "12px";
+          labelEmailsRef.current.style.zIndex = "1";
+        }
+      }
+    }
+  }
+  if (inputPhonesRef.current) {
+    if (labelPhonesRef.current) {
+      if (inputPhonesRef.current.value !== "") {
+        labelPhonesRef.current.style.top = "0%";
+        labelPhonesRef.current.style.color = "#000";
+        labelPhonesRef.current.style.fontSize = "12px";
+        labelPhonesRef.current.style.zIndex = "1";
+        if (inputPhonesRef.current === document.activeElement) {
+          labelPhonesRef.current.style.color = "#e94460";
+        }
+      } else {
+        labelPhonesRef.current.style.top = "50%";
+        labelPhonesRef.current.style.color = "#000";
+        labelPhonesRef.current.style.fontSize = "16px";
+        labelPhonesRef.current.style.zIndex = "-1";
+        if (inputPhonesRef.current === document.activeElement) {
+          labelPhonesRef.current.style.top = "0%";
+          labelPhonesRef.current.style.color = "#e94460";
+          labelPhonesRef.current.style.fontSize = "12px";
+          labelPhonesRef.current.style.zIndex = "1";
+        }
+      }
+    }
+  }
+  // 控制input和select狀態 end ---------------------------------------------
 
   return (
     <div>
@@ -342,11 +484,13 @@ function FoodMenu() {
                   {/* 根據activeInput狀態 改變css */}
                   <SelectDate activeInput={activeInput === 4 ? true : false}>
                     <BookSelectLabel
+                      ref={labelDateRef}
                       activeInput={activeInput === 4 ? true : false}
                     >
                       Select Date
                     </BookSelectLabel>
                     <BookSelect
+                      ref={selectDateRef}
                       name="date"
                       id="date"
                       // 聚焦就ser
@@ -369,12 +513,14 @@ function FoodMenu() {
                   </SelectDate>
                   <SelectGuests activeInput={activeInput === 5 ? true : false}>
                     <BookSelectLabel
+                      ref={labelGusetsRef}
                       htmlFor=""
                       activeInput={activeInput === 5 ? true : false}
                     >
                       Number Of Guests
                     </BookSelectLabel>
                     <BookSelect
+                      ref={selectGusetsRef}
                       name="number"
                       id="number"
                       onFocus={() => {
@@ -393,16 +539,40 @@ function FoodMenu() {
                       })}
                     </BookSelect>
                   </SelectGuests>
+                  {/* Input */}
                   {inputContent.map((v, i) => {
                     return (
                       <div className="form-input" key={i}>
                         <BookInputLabel
+                          ref={
+                            i === 0
+                              ? labelFistNamesRef
+                              : i === 1
+                              ? labelLastNamesRef
+                              : i === 2
+                              ? labelEmailsRef
+                              : i === 3
+                              ? labelPhonesRef
+                              : null
+                          }
                           htmlFor=""
                           activeInput={i === activeInput ? true : false}
                         >
                           {v}
                         </BookInputLabel>
+
                         <BookInput
+                          ref={
+                            i === 0
+                              ? inputFistNamesRef
+                              : i === 1
+                              ? inputLastNamesRef
+                              : i === 2
+                              ? inputEmailsRef
+                              : i === 3
+                              ? inputPhonesRef
+                              : null
+                          }
                           type="text"
                           onFocus={() => {
                             setActiveInput(i);

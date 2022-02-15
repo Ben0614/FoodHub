@@ -12,11 +12,13 @@ export const BreadcrumbWrap = styled.div`
 export const Home = styled.p`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 export const NewYork = styled.p`
   display: flex;
   align-items: center;
   margin-left: ${(props) => props.theme.mg(2)};
+  cursor: pointer;
 `;
 export const Now = styled.p`
   margin-left: ${(props) => props.theme.mg(2)};

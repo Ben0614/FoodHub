@@ -28,7 +28,9 @@ interface Props {
 function ShopCart(props: Props) {
   const dispatch = useDispatch();
 
+  // 傳送購物車商品List
   const setCartItem = useCallback(
+    // newCartData 裝的是完整的商品List
     (newCartData: Array<Obj>) => {
       dispatch({
         type: "cart-item",
@@ -37,13 +39,13 @@ function ShopCart(props: Props) {
     },
     [dispatch]
   );
-
+  // 獲取購物車商品List
   const getCartItemData = useSelector((state: State) => {
     return state.cart;
   });
 
-  console.log("getCartItemState", getCartItemData);
 
+  // 商品價格陣列
   let foodPrice;
   // 判斷購物車是否有商品
   // 沒有商品就給[0,0] 否則reduce會報錯
@@ -54,11 +56,10 @@ function ShopCart(props: Props) {
   } else {
     foodPrice = [0, 0];
   }
+  // 計算總價
   const total = foodPrice.reduce((pre, cur) => {
     return pre + cur;
   });
-  // console.log("foodPrice", foodPrice);
-  // console.log("total", total);
 
   return (
     // 狀態判斷開啟或關閉
@@ -67,6 +68,7 @@ function ShopCart(props: Props) {
         {/* 總數量 */}
         <div className="total">
           <RiShoppingBagLine />
+          {/* 商品總數 */}
           <span>{getCartItemData.length} Item</span>
         </div>
         {/* 關閉 */}
@@ -85,8 +87,11 @@ function ShopCart(props: Props) {
                 {/* + */}
                 <button
                   onClick={() => {
+                    // 複製購物車商品List
                     const newCartData = [...getCartItemData];
+                    // 找出此商品 數量+1
                     newCartData[i].amount = newCartData[i].amount + 1;
+                    // 傳送
                     setCartItem(newCartData);
                   }}
                 >
@@ -97,11 +102,14 @@ function ShopCart(props: Props) {
                 {/* - */}
                 <button
                   onClick={() => {
+                    // 複製購物車商品List
                     const newCartData = [...getCartItemData];
+                    // 找出此商品 數量 -1 最低數量不能小於1
                     newCartData[i].amount =
                       newCartData[i].amount - 1 <= 1
                         ? 1
                         : newCartData[i].amount - 1;
+                    // 傳送
                     setCartItem(newCartData);
                   }}
                 >
@@ -119,6 +127,7 @@ function ShopCart(props: Props) {
                     ${v.price} x {v.amount}
                   </p>
                   <p>
+                    {/* 該商品總價 */}
                     {v.special_price
                       ? v.special_price * v.amount
                       : v.special_price}
@@ -127,9 +136,11 @@ function ShopCart(props: Props) {
               </Content>
               <ImCross
                 onClick={() => {
+                  // 刪除商品 從商品List篩選出id不符合的商品
                   const newCartData = getCartItemData.filter((val) => {
                     return val.id !== v.id;
                   });
+                  // 傳送
                   setCartItem(newCartData);
                 }}
               />
