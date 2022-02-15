@@ -1,5 +1,5 @@
 import React from "react";
-import router from "next/router";
+import { useRouter } from "next/router";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { BreadcrumbWrap, Home, NewYork, Now } from "./BreadcrumbStyle";
 
@@ -8,6 +8,7 @@ interface Props {
 }
 
 function Breadcrumb(props: Props) {
+  const router = useRouter();
   return (
     <BreadcrumbWrap>
       {/* 第一層 */}

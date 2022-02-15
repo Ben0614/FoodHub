@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { State, Obj } from "../../type";
-// import { shopCartItemData } from "../../data";
 import { ImCross } from "react-icons/im";
 import { RiShoppingBagLine } from "react-icons/ri";
 import { BsPlusLg } from "react-icons/bs";
@@ -43,7 +42,6 @@ function ShopCart(props: Props) {
   const getCartItemData = useSelector((state: State) => {
     return state.cart;
   });
-
 
   // 商品價格陣列
   let foodPrice;

@@ -1,4 +1,4 @@
-import { SearchRestaurant, SortBy } from "../../../type";
+import { SearchRestaurant, SortBy, SearchWord } from "../../../type";
 
 // 餐廳List
 const SearchRestaurantListReducer = (state = [], action: SearchRestaurant) => {
@@ -37,9 +37,20 @@ const SortByReducer = (state = "", action: SortBy) => {
   }
 };
 
+// 餐廳搜尋
+const SearchReducer = (state = "", action: SearchWord) => {
+  switch (action.type) {
+    case "search-word":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
 export {
   SearchRestaurantListReducer,
   CategoriesReducer,
   RatingReducer,
   SortByReducer,
+  SearchReducer,
 };

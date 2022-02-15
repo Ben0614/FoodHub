@@ -9,14 +9,15 @@ import {
   CategoriesReducer,
   RatingReducer,
   SortByReducer,
+  SearchReducer,
 } from "./reducers/searchRestaurantReducer";
 
 type RootStore = ReturnType<typeof rootReducers>;
-
+// "searchRestaurantList", "categories", "rating", "sortBy";
 const storeConfig = {
   key: "root",
   storage: storage,
-  blacklist: ["searchRestaurantList", "categories", "rating", "sortBy"],
+  whitelist: ["cart"],
 };
 
 const rootReducers = combineReducers({
@@ -26,6 +27,7 @@ const rootReducers = combineReducers({
   categories: CategoriesReducer,
   rating: RatingReducer,
   sortBy: SortByReducer,
+  searchWord: SearchReducer,
 });
 
 const myPersistReducers = persistReducer<RootStore, any>(

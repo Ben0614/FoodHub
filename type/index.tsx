@@ -27,6 +27,7 @@ export interface State {
   categories: Array<string>;
   rating: Array<string>;
   sortBy: string;
+  searchWord: string;
 }
 
 // cartReducer
@@ -48,6 +49,12 @@ export interface SearchRestaurant {
 }
 // searchRestaurant
 export interface SortBy {
+  type: string;
+  payload: string;
+}
+
+// searchRestaurant
+export interface SearchWord {
   type: string;
   payload: string;
 }

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useCallback, useRef } from "react";
+import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import { State } from "../../type";
@@ -17,9 +18,13 @@ interface Props {
 }
 
 function Nav(props: Props) {
+  const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  const searchInput = useRef<HTMLInputElement>(null);
+  // router
+  const router = useRouter();
 
   function openModal() {
     setModalIsOpen(true);
@@ -28,6 +33,17 @@ function Nav(props: Props) {
   function closeModal() {
     setModalIsOpen(false);
   }
+
+  // 傳送搜索餐廳關鍵字
+  const setSeachWord = useCallback(
+    (searchWord) => {
+      dispatch({
+        type: "search-word",
+        payload: searchWord,
+      });
+    },
+    [dispatch]
+  );
 
   // 獲取購物車內的商品數量
   const cartItemTotal = useSelector((state: State) => {
@@ -51,8 +67,28 @@ function Nav(props: Props) {
           <div>
             <BiCurrentLocation />
           </div>
-          <input type="text" placeholder="Search for restaurant" />
-          <BiSearchAlt2 />
+          <input
+            ref={searchInput}
+            type="text"
+            placeholder="Search for restaurant"
+            onKeyUp={(e) => {
+              // 如果按下enter就傳送searchWord
+              if (e.key === "Enter") {
+                setSeachWord((e.target as HTMLInputElement).value);
+              // 跳轉到餐廳頁面
+                router.push("/SearchRestaurant");
+              }
+            }}
+          />
+
+          <BiSearchAlt2
+            onClick={() => {
+              // 如果按下Button就傳送searchWord
+              setSeachWord(searchInput.current!.value);
+              // 跳轉到餐廳頁面
+              router.push("/SearchRestaurant");
+            }}
+          />
         </Search>
         <div className="icons">
           <div className="user" onClick={openModal}>

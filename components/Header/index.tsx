@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useCallback, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import { State } from "../../type";
@@ -17,16 +18,23 @@ import {
   MainTitle,
   SecondTitle,
   Search,
+  SearchInput,
+  SearchButton,
 } from "./HeaderStyle";
 
-
 function Header() {
+  const dispatch = useDispatch();
   // user模態框
   const [modalIsOpen, setModalIsOpen] = useState(false);
   // 購物車模態框
   const [cartIsOpen, setCartIsOpen] = useState(false);
   // navbar模態框
   const [navbarIsOpen, setNavbarIsOpen] = useState(false);
+  // 搜索框
+  const searchInput = useRef<HTMLInputElement>(null);
+  // router
+  const router = useRouter();
+
   // 開啟user
   function openModal() {
     setModalIsOpen(true);
@@ -35,6 +43,17 @@ function Header() {
   function closeModal() {
     setModalIsOpen(false);
   }
+
+  // 傳送搜索餐廳關鍵字
+  const setSeachWord = useCallback(
+    (searchWord) => {
+      dispatch({
+        type: "search-word",
+        payload: searchWord,
+      });
+    },
+    [dispatch]
+  );
 
   // 獲取購物車內的商品數量
   const cartItemTotal = useSelector((state: State) => {
@@ -99,8 +118,29 @@ function Header() {
             <BiCurrentLocation />
             <span>Locate Me</span>
           </h4>
-          <input type="text" placeholder="Search for restaurant" />
-          <button>Search</button>
+          <SearchInput
+            ref={searchInput}
+            type="text"
+            placeholder="Search for restaurant"
+            onKeyUp={(e) => {
+              if (e.key === "Enter") {
+                // 如果按下enter就傳送searchWord
+                setSeachWord((e.target as HTMLInputElement).value);
+                // 跳轉到餐廳頁面
+                router.push("/SearchRestaurant");
+              }
+            }}
+          />
+          <SearchButton
+            onClick={() => {
+              // 如果按下enter就傳送searchWord
+              setSeachWord(searchInput.current!.value);
+              // 跳轉到餐廳頁面
+              router.push("/SearchRestaurant");
+            }}
+          >
+            Search
+          </SearchButton>
         </Search>
       </Container>
     </HeaderWrap>

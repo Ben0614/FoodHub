@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import Link from "next/link";
-import Image from "next/image";
 import { State } from "../../type";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -114,6 +112,11 @@ function SearchRestaurant() {
     return state.sortBy;
   });
 
+  // 獲取搜尋關鍵字
+  const getSerachWord = useSelector((state: State) => {
+    return state.searchWord;
+  });
+
   // 控制餐廳種類顯示 (多選)
   const handleCategories = (
     listData: Array<RestaurantObj>,
@@ -225,6 +228,19 @@ function SearchRestaurant() {
     // 傳送
     return newList;
   };
+  // 控制搜索關鍵字
+  const handleSearchWord = (
+    listData: Array<RestaurantObj>,
+    searchWord: string
+  ) => {
+    let newList = [...listData];
+    // 篩選出title有包含searchWord的餐廳
+    newList = newList.filter((v) => {
+      return v.title.includes(searchWord);
+    });
+
+    return newList;
+  };
 
   // 一掛載完成就傳送商品List
   useEffect(() => {
@@ -241,9 +257,17 @@ function SearchRestaurant() {
     newResraurants = handleRating(newResraurants, getRating);
     // 回傳新的商品List和種類
     newResraurants = handleCategories(newResraurants, getCategories);
+    // 回傳新的商品List和搜尋關鍵字
+    newResraurants = handleSearchWord(newResraurants, getSerachWord);
     // 傳送List
     setDisplayRestaurantsList(newResraurants);
-  }, [setDisplayRestaurantsList, getSortBy, getRating, getCategories]);
+  }, [
+    setDisplayRestaurantsList,
+    getSerachWord,
+    getSortBy,
+    getRating,
+    getCategories,
+  ]);
 
   // 開啟
   function openModalSearch() {
