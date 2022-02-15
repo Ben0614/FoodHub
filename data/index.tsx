@@ -306,22 +306,60 @@ export const restaurantData = [
 
 // PopularRestaurant
 export const popularRestaurantData = [
-  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/1.jpg" },
   {
-    title: "Mughal Masala Masala Masala Masala",
-    pic: "/images/homePage/popularRestaurant/2.jpg",
+    title: "上善善家",
+    pic: "/images/homePage/popularRestaurant/1.jpg",
+    price: 859,
+    star: 2.8,
+    category: "蔬食",
   },
-  { title: "Woondal", pic: "/images/homePage/popularRestaurant/3.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/4.jpg" },
-  { title: "Starbucks", pic: "/images/homePage/popularRestaurant/5.jpg" },
-  { title: "Mughal Masala", pic: "/images/homePage/popularRestaurant/6.jpg" },
-  { title: "Woondal", pic: "/images/homePage/popularRestaurant/7.jpg" },
-  { title: "Red Chillies", pic: "/images/homePage/popularRestaurant/8.jpg" },
+  {
+    title: "壽司女",
+    pic: "/images/homePage/popularRestaurant/2.jpg",
+    price: 499,
+    star: 5,
+    category: "壽司",
+  },
+  {
+    title: "大大蔬食",
+    pic: "/images/homePage/popularRestaurant/3.jpg",
+    price: 239,
+    star: 1,
+    category: "蔬食",
+  },
+  {
+    title: "摩斯密碼堡",
+    pic: "/images/homePage/popularRestaurant/4.jpg",
+    price: 159,
+    star: 4.2,
+    category: "漢堡",
+  },
+  {
+    title: "女去蔬食",
+    pic: "/images/homePage/popularRestaurant/5.jpg",
+    price: 799,
+    star: 4.4,
+    category: "蔬食",
+  },
+  {
+    title: "蔬山",
+    pic: "/images/homePage/popularRestaurant/6.jpg",
+    price: 399,
+    star: 3,
+    category: "蔬食",
+  },
+  {
+    title: "羅賓",
+    pic: "/images/homePage/popularRestaurant/7.jpg",
+    price: 1299,
+    star: 4.1,
+    category: "鐵板燒",
+  },
+  {
+    title: "Man M",
+    pic: "/images/homePage/popularRestaurant/8.jpg",
+    price: 3999,
+    star: 4.5,
+    category: "甜點",
+  },
 ];
-
-// ShopCart
-// export const shopCartItemData = [
-//   "/images/shopCart/1.png",
-//   "/images/shopCart/2.png",
-//   "/images/shopCart/3.png",
-// ];
