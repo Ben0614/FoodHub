@@ -17,62 +17,31 @@ export const NavWrap = styled.div<Props>`
   left: 0;
   background-color: #fff;
   z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: ${(props) => props.theme.pd()} ${(props) => props.theme.pd(6)};
   transform: ${(props) => (props.isShow ? "0" : "translateY(-100%)")};
   transition: 0.3s;
-  .icons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 45%;
-    font-size: 25px;
-    .user {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-      span {
-        display: none;
-        margin-left: ${(props) => props.theme.mg(2)};
-        font-size: ${(props) => props.theme.fz(1) + "px"};
-      }
-    }
-    > svg {
-      cursor: pointer;
-    }
-  }
-  ${(props) => props.theme.screens.lg} {
-    .icons {
-      width: 25%;
-      .user {
-        span {
-          display: block;
-        }
-      }
-    }
-  }
-  ${(props) => props.theme.screens.xl} {
-    .icons {
-      width: 20%;
-    }
-  }
-  ${(props) => props.theme.screens.twoXl} {
-    .icons {
-      width: 15%;
-    }
-  }
+`;
+export const Main = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+export const Left = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
 `;
 export const Search = styled.div`
   display: none;
   align-items: center;
   flex-wrap: wrap;
-  width: 50%;
+  width: 55%;
   background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
   color: #000;
+  margin-left: ${(props) => props.theme.mg(6)};
   svg {
     cursor: pointer;
     color: #757575;
@@ -132,7 +101,6 @@ export const Search = styled.div`
     }
   }
   ${(props) => props.theme.screens.twoXl} {
-    width: 40%;
     h4 {
       width: 20%;
     }
@@ -144,6 +112,47 @@ export const Search = styled.div`
     }
   }
 `;
+export const Icons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 45%;
+  font-size: 25px;
+  > svg {
+    cursor: pointer;
+  }
+  ${(props) => props.theme.screens.lg} {
+    width: 25%;
+    .user {
+      span {
+        display: block;
+      }
+    }
+  }
+  ${(props) => props.theme.screens.xl} {
+    width: 20%;
+  }
+  ${(props) => props.theme.screens.twoXl} {
+    width: 15%;
+  }
+`;
+
+export const User = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  span {
+    display: none;
+    margin-left: ${(props) => props.theme.mg(2)};
+    font-size: ${(props) => props.theme.fz(1) + "px"};
+  }
+  ${(props) => props.theme.screens.lg} {
+    span {
+      display: block;
+    }
+  }
+`;
+
 export const Cart = styled.div`
   font-size: 16px;
   cursor: pointer;

@@ -74,6 +74,10 @@ export const MainTitle = styled.div`
   span {
     font-weight: 700;
   }
+  ${(props) => props.theme.screens.twoXl} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 export const SecondTitle = styled.div`
   font-size: ${(props) => props.theme.fz(2) + "px"};
@@ -111,34 +115,49 @@ export const Search = styled.div`
     }
   }
 
+  /* 桌機 */
+  ${(props) => props.theme.screens.lg} {
+    width: 90%;
+    margin: 0 auto;
+    h4 {
+      width: 15%;
+    }
+  }
+  ${(props) => props.theme.screens.xl} {
+    width: 70%;
+    h4 {
+      width: 15%;
+    }
+  }
+  ${(props) => props.theme.screens.twoXl} {
+    width: 60%;
+  }
 `;
 
 export const SearchInput = styled.input`
-  flex: 1;
   width: 50%;
   padding: ${(props) => props.theme.pd(2)};
+  flex: 1;
   /* 修改input 外框focus顏色 */
   &:focus {
     outline: 1px solid #ccc;
   }
+  /* 桌機 */
   ${(props) => props.theme.screens.lg} {
     flex: 1;
     border: 1px solid #ccc;
     padding: ${(props) => props.theme.pd(3)} ${(props) => props.theme.pd(2)};
-    &:focus {
-      outline: none;
-    }
   }
-
 `;
 export const SearchButton = styled.button`
+  padding: ${(props) => props.theme.pd(2)};
   width: 30%;
+  color: #fff;
   background-color: #d23f57;
   border: none;
-  padding: ${(props) => props.theme.pd(2)};
   font-size: ${(props) => props.theme.fz(1) + "px"};
-  color: #fff;
   cursor: pointer;
+  /* 桌機 */
   ${(props) => props.theme.screens.lg} {
     width: 15%;
   }
