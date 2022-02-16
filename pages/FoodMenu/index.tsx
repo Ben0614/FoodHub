@@ -499,7 +499,7 @@ function FoodMenu() {
                       ref={selectDateRef}
                       name="date"
                       id="date"
-                      // 聚焦就ser
+                      // 聚焦就set
                       onFocus={() => {
                         setActiveInput(4);
                       }}

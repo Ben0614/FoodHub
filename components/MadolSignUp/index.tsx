@@ -55,7 +55,6 @@ function MadolSignUp(props: Props) {
         </MailOrNumber>
         <Password>
           <label htmlFor="password">Password</label>
-          {/* <br /> */}
           <input
             type="text"
             name="password"
@@ -65,7 +64,6 @@ function MadolSignUp(props: Props) {
         </Password>
         <ConfirmPassword>
           <label htmlFor="confirm-password">Confirm Password</label>
-          {/* <br /> */}
           <input
             type="text"
             name="confirm-password"

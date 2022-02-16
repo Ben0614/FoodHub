@@ -55,6 +55,11 @@ function Header() {
     [dispatch]
   );
 
+  // 獲取搜索餐廳關鍵字
+  const getSearchWord = useSelector((state: State) => {
+    return state.searchWord;
+  });
+
   // 獲取購物車內的商品數量
   const cartItemTotal = useSelector((state: State) => {
     return state.cart.length;
@@ -118,10 +123,12 @@ function Header() {
             <BiCurrentLocation />
             <span>Locate Me</span>
           </h4>
+          {/* defaultValue 放入獲取的關鍵字 */}
           <SearchInput
             ref={searchInput}
             type="text"
             placeholder="Search for restaurant"
+            defaultValue={getSearchWord}
             onKeyUp={(e) => {
               if (e.key === "Enter") {
                 // 如果按下enter就傳送searchWord

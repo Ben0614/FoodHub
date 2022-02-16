@@ -31,11 +31,6 @@ import {
   ItemCost,
 } from "../../styles/SearchRestaurantStyle";
 
-// 如果data裡同時有string和number 要這樣聲明type
-// type SortBy = string | number;
-// type Rating = Array<string>;
-// type Categories = Array<string>;
-
 function SearchRestaurant() {
   // Fixed Nav 開關狀態
   const [isShow, setIsShow] = useState(true);
@@ -43,14 +38,6 @@ function SearchRestaurant() {
   const [buttonChange, setButtonChange] = useState(0);
   // SearchModal 開關狀態
   const [modalSearchIsOpen, setModalSearchIsOpen] = useState(false);
-  // 餐廳List狀態
-  // const [displayRestaurantsList, setDisplayRestaurantsList] = useState(
-  //   deliverRestaurantsData
-  // );
-  // const [categories, setCategories] = useState<Categories>([]);
-
-  // const [rating, setRating] = useState<Rating>([]);
-  // const [sortBy, setSortBy] = useState<SortBy>("");
 
   const dispatch = useDispatch();
   // 傳送餐廳List

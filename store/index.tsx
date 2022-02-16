@@ -13,7 +13,6 @@ import {
 } from "./reducers/searchRestaurantReducer";
 
 type RootStore = ReturnType<typeof rootReducers>;
-// "searchRestaurantList", "categories", "rating", "sortBy";
 const storeConfig = {
   key: "root",
   storage: storage,

@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { popularRestaurantData } from "../../data";
 import { AiFillStar } from "react-icons/ai";
-
 import {
   PopularRestaurantWrap,
   PopularRestaurantTitle,
@@ -51,7 +50,9 @@ function PopularRestaurant() {
                     </div>
                     <div className="bottom">
                       <p className="price">$20</p>
-                      <p className="time">• Cofee, set menu • 15 - 20 min</p>
+                      <p className="time">
+                        • {v.category}, set menu • 15 - 20 min
+                      </p>
                     </div>
                   </PopularRestaurantItem>
                 </a>

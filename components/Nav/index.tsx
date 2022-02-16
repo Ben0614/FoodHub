@@ -55,6 +55,11 @@ function Nav(props: Props) {
     [dispatch]
   );
 
+  // 獲取搜索餐廳關鍵字
+  const getSearchWord = useSelector((state: State) => {
+    return state.searchWord;
+  });
+
   // 獲取購物車內的商品數量
   const cartItemTotal = useSelector((state: State) => {
     return state.cart.length;
@@ -62,7 +67,6 @@ function Nav(props: Props) {
 
   return (
     // firstHeight 如果一開始不顯示 高度就給0 否則會空出一塊區域
-    // Container
     <NavHeight firstHeight={props.firstHeight}>
       <NavWrap isShow={props.isShow}>
         <Container>
@@ -90,6 +94,7 @@ function Nav(props: Props) {
                   ref={searchInput}
                   type="text"
                   placeholder="Search for restaurant"
+                  defaultValue={getSearchWord}
                   onKeyUp={(e) => {
                     // 如果按下enter就傳送searchWord
                     if (e.key === "Enter") {
