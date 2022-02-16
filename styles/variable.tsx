@@ -22,26 +22,6 @@ const screens = {
   twoXl: "@media (min-width: 1785px)",
 };
 
-const letters = {
-  title: "5px",
-  viewAll: "2px",
-  name: "5px",
-  pinYin: "3px",
-  link: "1px",
-  siteSupport: "2px",
-};
-
-const fw = {
-  bigTitle: 200,
-  fixedNav: 200,
-  viewAll: 300,
-  en: 300,
-  jp: 400,
-  jpTitle: 500,
-  scheduleDate: 500,
-  scheduleWeek: 200,
-};
-
 const fz = (level = 0) => {
   if (level <= 0) {
     level = 0;
@@ -77,8 +57,6 @@ const mg = (i = 1) => {
 const theme = {
   container,
   screens,
-  letters,
-  fw,
   fz,
   lh,
   col,
