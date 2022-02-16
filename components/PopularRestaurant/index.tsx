@@ -49,7 +49,7 @@ function PopularRestaurant() {
                       </p>
                     </div>
                     <div className="bottom">
-                      <p className="price">$20</p>
+                      <p className="price">${v.price}</p>
                       <p className="time">
                         • {v.category}, set menu • 15 - 20 min
                       </p>
