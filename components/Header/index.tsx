@@ -35,12 +35,25 @@ function Header() {
   // router
   const router = useRouter();
 
+  // 彈跳框開啟 就禁止滑動視窗
+  const bodyStroll = (isScroll: boolean) => {
+    if (isScroll) {
+      document.body.style.overflow = "unset";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
   // 開啟user
   function openModal() {
+    // user 開啟時禁止滑動
+    bodyStroll(false);
     setModalIsOpen(true);
   }
   // 關閉user
   function closeModal() {
+    // user 關閉時開啟滑動
+    bodyStroll(true);
     setModalIsOpen(false);
   }
 
@@ -86,6 +99,8 @@ function Header() {
             <Cart
               onClick={() => {
                 setCartIsOpen(true);
+                // cart 開啟時禁止滑動
+                bodyStroll(false);
               }}
             >
               <BsCart3 />
@@ -95,6 +110,8 @@ function Header() {
             <GiHamburgerMenu
               onClick={() => {
                 setNavbarIsOpen(true);
+                // navbar 開啟時禁止滑動
+                bodyStroll(false);
               }}
             />
           </div>
@@ -103,9 +120,17 @@ function Header() {
         {/* user模態框 */}
         <MadolLogin modalIsOpen={modalIsOpen} closeModal={closeModal} />
         {/* 購物車模態框 */}
-        <ShopCart cartIsOpen={cartIsOpen} setCartIsOpen={setCartIsOpen} />
+        <ShopCart
+          cartIsOpen={cartIsOpen}
+          setCartIsOpen={setCartIsOpen}
+          bodyStroll={bodyStroll}
+        />
         {/* navbar模態框 */}
-        <Navbar navbarIsOpen={navbarIsOpen} setNavbarIsOpen={setNavbarIsOpen} />
+        <Navbar
+          navbarIsOpen={navbarIsOpen}
+          setNavbarIsOpen={setNavbarIsOpen}
+          bodyStroll={bodyStroll}
+        />
 
         <MainTitle>
           Discover the best food & drinks in <span>New York</span>

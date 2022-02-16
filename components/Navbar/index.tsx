@@ -17,6 +17,7 @@ import {
 interface Props {
   navbarIsOpen: boolean;
   setNavbarIsOpen: Function;
+  bodyStroll: Function;
 }
 
 function Navbar(props: Props) {
@@ -86,6 +87,8 @@ function Navbar(props: Props) {
         <ImCross
           onClick={() => {
             props.setNavbarIsOpen(false);
+            // navbar 關閉時開啟滑動
+            props.bodyStroll(true);
           }}
         />
       </Top>

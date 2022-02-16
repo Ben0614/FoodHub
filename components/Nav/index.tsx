@@ -36,11 +36,24 @@ function Nav(props: Props) {
   // router
   const router = useRouter();
 
+  // 彈跳框開啟 就禁止滑動視窗
+  const bodyStroll = (isScroll: boolean) => {
+    if (isScroll) {
+      document.body.style.overflow = "unset";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
   function openModal() {
+    // user 開啟時禁止滑動
+    bodyStroll(false);
     setModalIsOpen(true);
   }
 
   function closeModal() {
+    // user 關閉時開啟滑動
+    bodyStroll(true);
     setModalIsOpen(false);
   }
 
@@ -115,28 +128,44 @@ function Nav(props: Props) {
               </Search>
             </Left>
             <Icons>
+              {/* setScrollIsHidden */}
               <User onClick={openModal}>
                 <BiUserCircle />
                 <span>Account</span>
+                {/* User icon */}
               </User>
+              {/* User 彈跳框 */}
               <MadolLogin modalIsOpen={modalIsOpen} closeModal={closeModal} />
+              {/* 購物車 icon */}
               <Cart
                 onClick={() => {
                   setCartIsOpen(true);
+                  // cart 開啟時禁止滑動
+                  bodyStroll(false);
                 }}
               >
                 <BsCart3 />
                 <span>({cartItemTotal})</span>
               </Cart>
+              {/* navbar icon */}
               <GiHamburgerMenu
                 onClick={() => {
                   setNavbarIsOpen(true);
+                  // navbar 開啟時禁止滑動
+                  bodyStroll(false);
                 }}
               />
-              <ShopCart cartIsOpen={cartIsOpen} setCartIsOpen={setCartIsOpen} />
+              {/* 購物車 彈跳框 */}
+              <ShopCart
+                cartIsOpen={cartIsOpen}
+                setCartIsOpen={setCartIsOpen}
+                bodyStroll={bodyStroll}
+              />
+              {/* navbar 彈跳框 */}
               <Navbar
                 navbarIsOpen={navbarIsOpen}
                 setNavbarIsOpen={setNavbarIsOpen}
+                bodyStroll={bodyStroll}
               />
             </Icons>
           </Main>

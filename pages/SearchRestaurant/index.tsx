@@ -39,7 +39,17 @@ function SearchRestaurant() {
   // SearchModal 開關狀態
   const [modalSearchIsOpen, setModalSearchIsOpen] = useState(false);
 
+  // 彈跳框開啟 就禁止滑動視窗
+  const bodyStroll = (isScroll: boolean) => {
+    if (isScroll) {
+      document.body.style.overflow = "unset";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  };
+
   const dispatch = useDispatch();
+
   // 傳送餐廳List
   const setDisplayRestaurantsList = useCallback(
     (list) => {
@@ -259,10 +269,14 @@ function SearchRestaurant() {
 
   // 開啟
   function openModalSearch() {
+    // 開啟時禁止滑動
+    bodyStroll(false);
     setModalSearchIsOpen(true);
   }
   // 關閉
   function closeModalSearch() {
+    // 關閉時開啟滑動
+    bodyStroll(true);
     setModalSearchIsOpen(false);
   }
   return (

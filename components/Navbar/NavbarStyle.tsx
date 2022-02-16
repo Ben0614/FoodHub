@@ -12,6 +12,9 @@ export const NavbarWrap = styled.div<Props>`
   background-color: #fff;
   border-right: 1px solid #ccc;
   width: 90%;
+  /* 使用滾軸 */
+  max-height: 100vh;
+  overflow-y: auto;
   height: 100vh;
   z-index: 9999;
   /* 根據navbarIsOpen狀態判斷開啟或關閉 */

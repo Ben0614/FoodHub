@@ -6,6 +6,7 @@ interface Props {
   // list狀態
   isOpen?: boolean;
   listChange?: number;
+  categoryIndex?: boolean;
 }
 
 export const Starbucks = styled.div``;
@@ -158,19 +159,17 @@ export const MenuGroup = styled.ul`
     border-right: 1px solid #ccc;
   }
 `;
-export const MenuItem = styled.li`
+// categoryIndex;
+export const MenuItem = styled.li<Props>`
   margin-bottom: ${(props) => props.theme.mg(5)};
   line-height: ${(props) => props.theme.lh(props.theme.fz(1)) + "px"};
   transition: 0.3s color;
-  color: #999;
+  color: ${(props) => (props.categoryIndex ? "#000" : "#999")};
+  border-right: ${(props) =>
+    props.categoryIndex ? "3px solid#d23f57" : "none"};
   cursor: pointer;
   /* 觸碰時顯示右線 */
   &:hover {
-    color: #000;
-    border-right: 3px solid #d23f57;
-  }
-  /* 第一個持續顯示 */
-  &:nth-child(1) {
     color: #000;
     border-right: 3px solid #d23f57;
   }
@@ -191,7 +190,7 @@ export const RecommendItem = styled.li`
   margin-bottom: ${(props) => props.theme.mg(5)};
   text-align: center;
   .pic {
-    border-radius:5px;
+    border-radius: 5px;
     overflow: hidden;
     margin-bottom: ${(props) => props.theme.mg(1)};
   }
@@ -261,7 +260,7 @@ export const AddButton = styled.button`
   cursor: pointer;
   transition: 0.3s;
   &:hover {
-    background-color: rgba(0,0,0,.1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
   span {
   }

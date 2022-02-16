@@ -22,6 +22,7 @@ import {
 interface Props {
   cartIsOpen: boolean;
   setCartIsOpen: Function;
+  bodyStroll: Function;
 }
 
 function ShopCart(props: Props) {
@@ -73,6 +74,8 @@ function ShopCart(props: Props) {
         <ImCross
           onClick={() => {
             props.setCartIsOpen(false);
+            // cart 關閉時開啟滑動
+            props.bodyStroll(true);
           }}
         />
       </Top>

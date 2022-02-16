@@ -82,8 +82,20 @@ function FoodMenu() {
   const [listChange, setListChange] = useState(0);
   // FoodMenuModal 開關狀態
   const [modalFoodMenuIsOpen, setModalFoodMenuIsOpen] = useState(false);
+  // 現在的食物類別index (改變css用) 
+  const [categoryIndex, setCategoryIndex] = useState(0);
+
+  // 彈跳框開啟 就禁止滑動視窗
+  const bodyStroll = (isScroll: boolean) => {
+    if (isScroll) {
+      document.body.style.overflow = "unset";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  };
 
   const dispatch = useDispatch();
+
   // 加入購物車
   const setCartItem = useCallback(
     (cartData: Array<Obj>) => {
@@ -148,10 +160,14 @@ function FoodMenu() {
 
   // 開啟
   function openModalFoodMunu() {
+    // 開啟時禁止滑動
+    bodyStroll(false);
     setModalFoodMenuIsOpen(true);
   }
   // 關閉
   function closeModalFoodMunu() {
+    // 關閉時開啟滑動
+    bodyStroll(true);
     setModalFoodMenuIsOpen(false);
   }
 
@@ -397,25 +413,22 @@ function FoodMenu() {
                   handleCategory={handleCategory}
                   categoryAmount={categoryAmount}
                   menuItemAmount={menuItemAmount}
+                  categoryIndex={categoryIndex}
+                  setCategoryIndex={setCategoryIndex}
                 />
                 <MenuGroup>
-                  <MenuItem
-                    onClick={() => {
-                      handleCategory("Recomended");
-                    }}
-                  >
-                    Recomended ({menuItemAmount})
-                  </MenuItem>
                   {menuData.map((v, i) => {
                     return (
                       <MenuItem
                         key={i}
                         onClick={() => {
                           handleCategory(v);
+                          setCategoryIndex(i);
                         }}
+                        categoryIndex={i === categoryIndex ? true : false}
                       >
-                        {/* 種類名稱與商品數量 */}
-                        {v} ({categoryAmount[i]})
+                        {/* 種類名稱與商品數量 第1個是全部商品 */}
+                        {v} ({i === 0 ? menuItemAmount : categoryAmount[i]})
                       </MenuItem>
                     );
                   })}

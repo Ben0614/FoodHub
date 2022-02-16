@@ -194,6 +194,7 @@ export const reviews = [
   },
 ];
 export const menuData = [
+  "Recomended",
   "義式料理",
   "印度料理",
   "中式料理",

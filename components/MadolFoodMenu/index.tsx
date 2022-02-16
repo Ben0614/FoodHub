@@ -16,12 +16,13 @@ interface Props {
   closeModalFoodMunu: () => void;
   handleCategory: Function;
   categoryAmount: Array<number>;
-  menuItemAmount: Number;
+  menuItemAmount: number;
+  categoryIndex: number;
+  setCategoryIndex: Function;
 }
 
 // 桌機時不顯示
 function MadolFoodMenu(props: Props) {
-
   return (
     // 在這裡添加css內層的樣式
     <Modal
@@ -36,24 +37,18 @@ function MadolFoodMenu(props: Props) {
       </Cross>
       {/* item區域 */}
       <ItemGroup>
-        {/* 第一個是總數 額外挑出來 */}
-        <Item
-          onClick={() => {
-            props.handleCategory("Recomended");
-          }}
-        >
-          Recomended({props.menuItemAmount})
-        </Item>
         {menuData.map((v, i) => {
           return (
             <Item
               key={i}
               onClick={() => {
                 props.handleCategory(v);
+                props.setCategoryIndex(i);
               }}
+              categoryIndex={i === props.categoryIndex ? true : false}
             >
               {/* 種類名稱與商品數量 */}
-              {v} ({props.categoryAmount[i]})
+              {v} ({i === 0 ? props.menuItemAmount : props.categoryAmount[i]})
             </Item>
           );
         })}
