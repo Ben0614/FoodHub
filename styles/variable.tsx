@@ -35,15 +35,6 @@ const lh = (fontSize: number = 1) => {
   return Math.ceil((fontSize * paddingLevel) / baseLineSize) * baseLineSize;
 };
 
-const col = (i: number) => {
-  if (i >= 12) {
-    i = 12;
-  }
-  // 取到小數點後4位
-  let col = Math.round((i / 12) * 1000000) / 10000;
-  return col;
-};
-
 const pd = (i = 1) => {
   let pd = i * 5;
   return pd + "px";
@@ -59,7 +50,6 @@ const theme = {
   screens,
   fz,
   lh,
-  col,
   pd,
   mg,
 };
