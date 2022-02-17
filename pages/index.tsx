@@ -46,7 +46,7 @@ const Home: NextPage = () => {
     window.addEventListener("scroll", handleScroll);
     // 卸載
     return () => {
-      window.addEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
   return (
